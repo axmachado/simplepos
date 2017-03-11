@@ -1,4 +1,11 @@
+/* -*-c-*- */
 
+/*
+ * Define module "test" with two arguments: an integer and an string
+ *
+ * Module argument are read from the "spl_modulecall.dat" POSXML db File,
+ * and arguments passed by reference are written in "sps_moduleret.dat" 
+ */
 module test (int a, string &b);
 global
    int x, k;
@@ -8,7 +15,7 @@ x = 3;
 y = x;
 z = inttostring(x);
 
-k = stringtoint("10") + y * z * (3 - x);
+k = stringtoint("10") + y * stringtoint(z) * (3 - x);
 
 w = inttostring(y);
 

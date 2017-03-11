@@ -120,16 +120,16 @@ class POSXMLCode(object):
         functionCall = value.functionCall
         retval = None
         if functionCall.returnType == typedefs.INT:
-            retval = self.currentScope().autoInt()[0]
+            retval = self.currentScope().autoInt()
         elif functionCall.returnType == typedefs.STRING:
-            retval = self.currentScope().autoString()[0]
+            retval = self.currentScope().autoString()
 
         self.functionCall(functionCall, retval)
         return retval
 
     def expressionReturnVariable(self, value):
         " generate a return variable to an expression "
-        retval = self.currentScope().autoInt()[0]
+        retval = self.currentScope().autoInt()
         # new scope to process the values
         self.enterScope()
         vleft = self.procValue(value.left)

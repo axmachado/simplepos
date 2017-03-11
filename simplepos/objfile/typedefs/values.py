@@ -116,9 +116,6 @@ class StringConstant(Constant):
     def __init__(self, strValue):
         super(StringConstant, self).__init__(STRING, strValue)
 
-    def __str__(self):
-        return '"' + super(StringConstant, self).__str__() + '"'
-
 
 class VarValue(Value):
     """

@@ -211,7 +211,7 @@ class LogicalValueContext(object):
         # import here to avoid cyclic import problems
         from .control import IfStatement
 
-        exprResult, assignment = self.codeBlock.currentScope().autoInt(False)
+        exprResult = self.codeBlock.currentScope().autoInt()
         leftVal = self.procValue(value.left)
         rightVal = self.procValue(value.right)
         conditional = SimpleComparison(leftVal, value.operator, rightVal)
@@ -222,7 +222,7 @@ class LogicalValueContext(object):
         ifStm = IfStatement(self.codeBlock)
         ifStm.selfGenerated(conditional, ifBlock, elseBlock)
 
-        self.codeBlock.addStatements(assignment, ifStm)
+        self.codeBlock.addStatements(ifStm)
 
         return "$(%s)" % exprResult
 
@@ -241,7 +241,7 @@ class LogicalValueContext(object):
         elif isinstance(value, typedefs.Constant):
             result = str(value)
         elif isinstance(value, typedefs.VarValue):
-            result = '$(%s)' % value.value.name
+            result = value.value
         elif isinstance(value, typedefs.FunctionReturnValue):
             varName = self.codeBlock.functionReturnVariable(value)
             result = '$(%s)' % varName
@@ -301,7 +301,7 @@ class ConditionalFactory(object):
         if isinstance(value, typedefs.Constant):
             return str(value.value)
         elif isinstance(value, typedefs.VarValue):
-            return "$(%s)" % value.value.name
+            return value.value
         return None
 
     def getConditional(self, condition):

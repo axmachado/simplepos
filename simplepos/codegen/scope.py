@@ -101,7 +101,7 @@ class POSXMLCodeScope(object):
         stmgen = Assignment(typedefs.INT, varName, "0")
         if self.codeBlock:
             self.codeBlock.addStatements(stmgen)
-        return (varName, stmgen)
+        return varName
 
     def autoString(self):
         """
@@ -112,7 +112,7 @@ class POSXMLCodeScope(object):
         stmgen = Assignment(typedefs.STRING, varName, "")
         if self.codeBlock:
             self.codeBlock.addStatements(stmgen)
-        return varName, stmgen
+        return varName
 
     def addUserVariable(self, varName):
         """

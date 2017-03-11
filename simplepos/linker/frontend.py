@@ -37,7 +37,7 @@ class Linker(object):
     def __init__(self, *cmdline):
         self.inputFiles = None
         self.outputFile = None
-        optlist, args = getopt.getopt(cmdline[1:], 'o:h')
+        optlist, args = getopt.getopt(cmdline[1:], 'o:h', [ 'help'])
         for opt, param in optlist:
             if opt == '-h':
                 self.help()
@@ -63,7 +63,7 @@ class Linker(object):
            -o arquivo
                Configura o nome do arquivo de saída. Se omitido, o
                nome no primeiro arquivo é utilizado, com a extensão .posxml
-           -h
+           -h | --help
                Mostra esta mensagem de help.
         """
         print(mensagem)

@@ -70,7 +70,7 @@ class FunctionCall(POSXMLStatement):
                 attributes[attr] = str(value)
 
         for i in range(len(self.paramValues)):
-            argument = apiFcn.args[apiFcn.argList[i]]
+            argument = apiFcn.arguments[apiFcn.argumentList[i]]
             attributes[argument.name] = self.paramValues[i]
 
         attributesPart = []
