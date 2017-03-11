@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SimplePOSLanguage - generated for module test2 -->
+<posxml>
+    <integervariable value="1" variable="x" />
+    <integervariable value="2" variable="y" />
+    <integervariable value="3" variable="z" />
+    <integervariable value="0" variable="isimpleposauto0" />
+    <integervariable value="0" variable="isimpleposauto1" />
+    <if variable="$(x)" operator="greatherthan" value="2">
+        <integervariable value="1" variable="isimpleposauto1" />
+    <else/>
+        <integervariable value="0" variable="isimpleposauto1" />
+    </if>
+    <integervariable value="0" variable="isimpleposauto2" />
+    <if variable="$(y)" operator="lessthan" value="3">
+        <integervariable value="1" variable="isimpleposauto2" />
+    <else/>
+        <integervariable value="0" variable="isimpleposauto2" />
+    </if>
+    <integervariable value="0" variable="isimpleposauto0" />
+    <if variable="$(isimpleposauto1)" operator="notequalto" value="0">
+        <integervariable value="1" variable="isimpleposauto0" />
+    <else/>
+        <if variable="$(isimpleposauto2)" operator="notequalto" value="0">
+            <integervariable value="1" variable="isimpleposauto0" />
+        </if>
+    </if>
+    <while variable="$(isimpleposauto0)" operator="notequals" value="0">
+        <display line="1" message="com or" column="1" />
+        <integeroperator operator="++" variablesource="$(x)" />
+        <integeroperator operator="--" variablesource="$(y)" />
+        <integervariable value="0" variable="isimpleposauto1" />
+        <if variable="$(x)" operator="greatherthan" value="2">
+            <integervariable value="1" variable="isimpleposauto1" />
+        <else/>
+            <integervariable value="0" variable="isimpleposauto1" />
+        </if>
+        <integervariable value="0" variable="isimpleposauto2" />
+        <if variable="$(y)" operator="lessthan" value="3">
+            <integervariable value="1" variable="isimpleposauto2" />
+        <else/>
+            <integervariable value="0" variable="isimpleposauto2" />
+        </if>
+        <integervariable value="0" variable="isimpleposauto0" />
+        <if variable="$(isimpleposauto1)" operator="notequalto" value="0">
+            <integervariable value="1" variable="isimpleposauto0" />
+        <else/>
+            <if variable="$(isimpleposauto2)" operator="notequalto" value="0">
+                <integervariable value="1" variable="isimpleposauto0" />
+            </if>
+        </if>
+    </while>
+</posxml>

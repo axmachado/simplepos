@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SimplePOSLanguage - generated for module test3 -->
+<posxml>
+    <integervariable value="0" variable="f3_return" />
+    <integervariable value="0" variable="x" />
+    <integervariable value="0" variable="g" />
+    <integervariable value="0" variable="f1_return" />
+    <integervariable value="0" variable="y" />
+    <integervariable value="0" variable="f2_return" />
+    <integervariable value="0" variable="z" />
+    <integervariable value="0" variable="isimpleposauto0" />
+    <integervariable value="10" variable="f1_0_" />
+    <callfunction name="f1" />
+    <integervariable value="$(f1_return)" variable="x" />
+    <integervariable value="0" variable="isimpleposauto0" />
+    <integervariable value="$(x)" variable="f2_0_" />
+    <callfunction name="f2" />
+    <integervariable value="$(f2_return)" variable="y" />
+    <integervariable value="0" variable="isimpleposauto0" />
+    <integervariable value="0" variable="isimpleposauto1" />
+    <mathematicaloperation firstvalue="$(x)" operator="+" secondvalue="10" variabledestination="$(isimpleposauto1)" />
+    <integervariable value="0" variable="isimpleposauto0" />
+    <integervariable value="$(isimpleposauto1)" variable="f3_0_" />
+    <callfunction name="f3" />
+    <integervariable value="$(f3_return)" variable="z" />
+    <function name="f1">
+        <integervariable value="0" variable="isimpleposauto0" />
+        <integervariable value="0" variable="isimpleposauto1" />
+        <integervariable value="0" variable="isimpleposauto2" />
+        <integervariable value="$(f1_0_)" variable="f2_0_" />
+        <callfunction name="f2" />
+        <integervariable value="$(f2_return)" variable="isimpleposauto2" />
+        <mathematicaloperation firstvalue="$(isimpleposauto2)" operator="/" secondvalue="2" variabledestination="$(isimpleposauto1)" />
+        <integervariable value="0" variable="isimpleposauto2" />
+        <integervariable value="$(f1_0_)" variable="f3_0_" />
+        <callfunction name="f3" />
+        <integervariable value="$(f3_return)" variable="isimpleposauto2" />
+        <mathematicaloperation firstvalue="$(isimpleposauto1)" operator="+" secondvalue="$(isimpleposauto2)" variabledestination="$(isimpleposauto0)" />
+        <integervariable value="$(isimpleposauto0)" variable="f1_return" />
+    </function>
+    <function name="f3">
+        <integervariable value="" variable="f3_1_" />
+        <integervariable value="0" variable="isimpleposauto0" />
+        <integervariable value="0" variable="isimpleposauto1" />
+        <mathematicaloperation firstvalue="$(g)" operator="+" secondvalue="1" variabledestination="$(isimpleposauto1)" />
+        <mathematicaloperation firstvalue="$(isimpleposauto1)" operator="/" secondvalue="2" variabledestination="$(isimpleposauto0)" />
+        <integervariable value="$(isimpleposauto0)" variable="f3_1_" />
+        <integeroperator operator="++" variablesource="$(g)" />
+        <integervariable value="0" variable="isimpleposauto0" />
+        <mathematicaloperation firstvalue="$(f3_0_)" operator="*" secondvalue="$(f3_1_)" variabledestination="$(isimpleposauto0)" />
+        <integervariable value="$(isimpleposauto0)" variable="f3_return" />
+    </function>
+    <function name="f2">
+        <integervariable value="0" variable="isimpleposauto0" />
+        <integervariable value="0" variable="isimpleposauto1" />
+        <integervariable value="$(f2_0_)" variable="f3_0_" />
+        <callfunction name="f3" />
+        <integervariable value="$(f3_return)" variable="isimpleposauto1" />
+        <mathematicaloperation firstvalue="$(isimpleposauto1)" operator="+" secondvalue="1" variabledestination="$(isimpleposauto0)" />
+        <integervariable value="$(isimpleposauto0)" variable="f2_return" />
+    </function>
+</posxml>
