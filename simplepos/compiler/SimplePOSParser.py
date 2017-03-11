@@ -29,7 +29,7 @@ from io import StringIO
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3.")
+        buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\60")
         buf.write("\u0147\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
@@ -199,10 +199,10 @@ class SimplePOSParser ( Parser ):
                       "VOID", "TRUE", "FALSE", "IF", "ELSE", "WHILE", "BREAK", 
                       "FOR", "RETURN", "EXECMODULE", "LPAR", "RPAR", "LCURL", 
                       "RCURL", "COMMA", "SEMICOLOM", "REFMARK", "ASSIGN", 
-                      "PLUS", "MINUS", "TIMES", "DIV", "MOD", "EXP", "NOT", 
+                      "PLUS", "MINUS", "TIMES", "SLASH", "MOD", "EXP", "NOT", 
                       "AND", "OR", "GT", "LT", "GE", "LE", "EQ", "NE", "INCOPER", 
                       "DECOPER", "BLOCK_COMMENT", "ID", "DIGIT", "STRVALUE", 
-                      "WS" ]
+                      "SINGLELINE_COMMENT", "MULTILINE_COMMENT", "WS" ]
 
     RULE_sourcefile = 0
     RULE_moduledef = 1
@@ -273,7 +273,7 @@ class SimplePOSParser ( Parser ):
     PLUS=23
     MINUS=24
     TIMES=25
-    DIV=26
+    SLASH=26
     MOD=27
     EXP=28
     NOT=29
@@ -291,7 +291,9 @@ class SimplePOSParser ( Parser ):
     ID=41
     DIGIT=42
     STRVALUE=43
-    WS=44
+    SINGLELINE_COMMENT=44
+    MULTILINE_COMMENT=45
+    WS=46
 
     def __init__(self, input:TokenStream):
         super().__init__(input)
@@ -1660,7 +1662,7 @@ class SimplePOSParser ( Parser ):
             self.state = 221
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.DIV) | (1 << SimplePOSParser.MOD))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.SLASH) | (1 << SimplePOSParser.MOD))) != 0):
                 self.state = 218
                 self.times_div()
                 self.state = 223
@@ -1688,8 +1690,8 @@ class SimplePOSParser ( Parser ):
         def TIMES(self):
             return self.getToken(SimplePOSParser.TIMES, 0)
 
-        def DIV(self):
-            return self.getToken(SimplePOSParser.DIV, 0)
+        def SLASH(self):
+            return self.getToken(SimplePOSParser.SLASH, 0)
 
         def MOD(self):
             return self.getToken(SimplePOSParser.MOD, 0)
@@ -1717,7 +1719,7 @@ class SimplePOSParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 224
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.DIV) | (1 << SimplePOSParser.MOD))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.SLASH) | (1 << SimplePOSParser.MOD))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

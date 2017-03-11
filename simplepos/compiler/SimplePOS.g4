@@ -105,7 +105,7 @@ term
     : factor times_div*
     ;
 times_div
-    : (TIMES | DIV | MOD) factor
+    : (TIMES | SLASH | MOD) factor
     ;
 factor
     : atom rexp*
@@ -183,7 +183,7 @@ ASSIGN: '=';
 PLUS: '+';
 MINUS: '-';
 TIMES: '*';
-DIV: '/';
+SLASH: '/';
 MOD: '%';
 EXP: '^';
 NOT: '!';
@@ -204,4 +204,6 @@ BLOCK_COMMENT
 ID: [a-zA-Z_][a-zA-Z_0-9]* ;
 DIGIT: [0-9]+ ;
 STRVALUE: '"' (~[\r\n"] | '\"')* '"' ;
+SINGLELINE_COMMENT: '//' (~[\r\n]*) [\r\n] -> skip;
+MULTILINE_COMMENT: '/*' (.*?) '*/' -> skip;
 WS : [ \t\r\n]+ -> skip ;
