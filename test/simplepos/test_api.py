@@ -34,6 +34,6 @@ class ApiFinderTest(unittest.TestCase):
         for fname in ['waitkey', 'display_bitmap', 'crc', 'time_operation',
                       'crc_ccitt', 'xor', 'cipher_block', 'dbread',
                       'downloadfile', "iso8583_get_int", "receive",
-                      "hex_decode"]:
+                      "hexdecode"]:
             f1 = findApiFunction(fname)
             self.assertIsNotNone(f1)

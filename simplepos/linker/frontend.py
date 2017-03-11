@@ -57,7 +57,7 @@ class Linker(object):
         mensagem = """
         SimplePOS Linker
 
-        use spl.py [opcoes] arquivo1 arquivo2 ...
+        use spl [opcoes] arquivo1 arquivo2 ...
 
         opcoes:
            -o arquivo

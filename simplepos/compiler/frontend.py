@@ -40,7 +40,7 @@ def usage():
     msg = """
     SimplePOS Compiler
 
-    use spc.py [options] source-file
+    use spc [options] source-file
 
     opcoes:
        -q | --quiet

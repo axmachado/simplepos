@@ -224,7 +224,7 @@ class CompilerListener(SimplePOSListener):
 
     # Exit a parse tree produced by SimplePOSParser#times_div.
     def exitTimes_div(self, ctx: SimplePOSParser.Times_divContext):
-        opContext = firstNonNull([ctx.TIMES(), ctx.DIV(), ctx.MOD()])
+        opContext = firstNonNull([ctx.TIMES(), ctx.SLASH(), ctx.MOD()])
         if opContext:
             self.expressionOperation(opContext)
 
