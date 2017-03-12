@@ -3,9 +3,9 @@
 CloudWalk® company had a very interesting idea about software development 
 to POS terminals: 
 
-    Let's create a domain specific language to hide the complexity
-    of the terminal hardware and development environment and make
-    the development easyer for our customers.
+> Let's create a domain specific language to hide the complexity
+> of the terminal hardware and development environment and make
+> the development easier for our customers.
     
 But, when they implemented it, they came out with the not so interesting 
 [POSXML](https://docs.cloudwalk.io/en/posxml/structure) language.
@@ -48,8 +48,10 @@ solve some of the biggest troubles with it:
 This project is the SimplePOS compiler and linker, and I hope it's usefull 
 to someone besides me.
 
-Documentation of the SimplePOS language can be found in [docs/language.md](docs/language.md),
-and examples can be found in the [examples](examples) directory.
+Documentation of the SimplePOS language can be found in 
+[docs/language.md](docs/language.md), the api documentation in 
+[docs/api.md](docs/api.md) and examples can be found in the 
+[examples](examples) directory.
 
 Please, note that the program uses GPLv3 license, and if you use it 
 you must release the source code of the compiler and the applications 
