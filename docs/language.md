@@ -35,6 +35,11 @@
   for variables, and the linker manages the variable names to ensure
   no side effects of different functions using the name name for 
   local variables.
+ 
+### POSXML API 
+    
+  Almost the entire POSXML API is already mapped into the SimplePOS language.
+  See the [api](api.md) help file
     
 ### The main Module file
   The "module" command specifies a starting point for a SimplePOS

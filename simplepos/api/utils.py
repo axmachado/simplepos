@@ -43,18 +43,18 @@ def initApiFunctions():
     fcn = VoidApiFunction("beep", tagName="system.beep")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "check_battery",
+    fcn = ApiFunction(INT, "checkbattery",
                       tagName="system.checkbattery",
                       returnAttribute="variablestatus")
     functions.append(fcn)
 
-    fcn = ApiFunction(STRING, "system_info",
+    fcn = ApiFunction(STRING, "systeminfo",
                       ("type", STRING, False),
                       tagName="system.info",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 
-    fcn = VoidApiFunction("system_restart", tagName="system.restart")
+    fcn = VoidApiFunction("systemrestart", tagName="system.restart")
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "unzip", ("filename", STRING, False),
@@ -65,7 +65,7 @@ def initApiFunctions():
     fcn = VoidApiFunction("waitkey")
     functions.append(fcn)
 
-    fcn = VoidApiFunction("waitkey_timeout", ("seconds", INT, False),
+    fcn = VoidApiFunction("waitkeytimeout", ("seconds", INT, False),
                           tagName="waitkeytimeout")
     functions.append(fcn)
 

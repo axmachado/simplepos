@@ -31,7 +31,7 @@ class ApiFinderTest(unittest.TestCase):
         pass
 
     def testFindSomeFunctions(self):
-        for fname in ['waitkey', 'display_bitmap', 'crc', 'time_operation',
+        for fname in ['waitkey', 'displaybitmap', 'crc', 'time_operation',
                       'crc_ccitt', 'xor', 'cipher_block', 'dbread',
                       'downloadfile', "iso8583_get_int", "receive",
                       "hexdecode"]:

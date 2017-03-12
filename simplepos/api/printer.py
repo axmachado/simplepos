@@ -34,20 +34,20 @@ def initApiFunctions():
     fcn = VoidApiFunction("printbig", ("message", STRING, False))
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "print_bitmap",
+    fcn = ApiFunction(INT, "printbitmap",
                       ("filename", STRING, False),
                       returnAttribute="variablereturn", tagName="printbitmap")
     functions.append(fcn)
 
-    fcn = VoidApiFunction("print_barcode", ("horizontal", INT, False),
+    fcn = VoidApiFunction("printbarcode", ("horizontal", INT, False),
                           ("number", STRING, False))
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "check_paper", returnAttribute="variableReturn",
+    fcn = ApiFunction(INT, "checkpaper", returnAttribute="variableReturn",
                       tagName="checkpaperout")
     functions.append(fcn)
 
-    fcn = VoidApiFunction("paper_feed", tagName="paperfeed")
+    fcn = VoidApiFunction("paperfeed", tagName="paperfeed")
     functions.append(fcn)
 
     return functions

@@ -32,19 +32,17 @@ def initApiFunctions():
                       returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "menu_with_header",
+    fcn = ApiFunction(INT, "menuwithheader",
                       ("header", STRING, False),
                       ("timeoutheader", INT, False),
                       ("options", STRING, False),
                       ("timeout", INT, False),
-                      tagName="menuwithheader",
                       returnAttribute="variablereturn"
                       )
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "display_bitmap",
+    fcn = ApiFunction(INT, "displaybitmap",
                       ("filename", STRING, False),
-                      tagName="displaybitmap",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 
@@ -57,26 +55,26 @@ def initApiFunctions():
     fcn = VoidApiFunction("cleandisplay")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "get_touch", ("axisx", INT, True),
+    fcn = ApiFunction(INT, "gettouch", ("axisx", INT, True),
                       ("axisy", INT, True),
                       tagName="system.gettouchscreen",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 
-    fcn = ApiFunction(STRING, "input_float", ("line", INT, False),
+    fcn = ApiFunction(STRING, "inputfloat", ("line", INT, False),
                       ("column", INT, False),
                       ("message", STRING, False),
                       tagName="inputfloat", returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(STRING, "input_format", ("line", INT, False),
+    fcn = ApiFunction(STRING, "inputformat", ("line", INT, False),
                       ("column", INT, False),
                       ("message", STRING, False),
                       ("format", STRING, False), tagName="inputformat",
                       returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "input_int", ("line", INT, False),
+    fcn = ApiFunction(INT, "inputint", ("line", INT, False),
                       ("column", INT, False),
                       ("message", STRING, False),
                       ("minimum", INT, False),
@@ -84,7 +82,7 @@ def initApiFunctions():
                       returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "input_option", ("line", INT, False),
+    fcn = ApiFunction(INT, "inputoption", ("line", INT, False),
                       ("column", INT, False),
                       ("message", STRING, False),
                       ("minimum", INT, False),
@@ -92,7 +90,7 @@ def initApiFunctions():
                       returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "input_money", ("line", INT, False),
+    fcn = ApiFunction(INT, "inputmoney", ("line", INT, False),
                       ("column", INT, False),
                       ("message", STRING, False),
                       tagName="inputmoney", returnAttribute="variable")

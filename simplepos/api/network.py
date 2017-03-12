@@ -35,11 +35,11 @@ def initApiFunctions():
     fcn = ApiFunction(INT, "preconnect", returnAttrbute="variablestatus")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "modem_init", returnAttribute="variablereturn",
+    fcn = ApiFunction(INT, "initmodem", returnAttribute="variablereturn",
                       tagName="network.start")
     functions.append(fcn)
 
-    fcn = VoidApiFunction("modem_shutdown", tagName="shutdownmodem")
+    fcn = VoidApiFunction("shutdownmodem")
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "gprs_signal_level",
