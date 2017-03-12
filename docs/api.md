@@ -100,7 +100,17 @@
      * [waitkeytimeout](#waitkeytimeout)
      * [readkey](#readkey)
      * [wait](#wait)
-     
+  * [ISO8583](#iso8583)
+     * [iso8583_loadconfig](#iso8583_loadconfig)
+     * [iso8583_init_message](#iso8583_init_message)
+     * [iso8583_put_string](#iso8583_put_string)
+     * [iso8583_put_int](#iso8583_put_int)
+     * [iso8583_end_message](#iso8583_end_message)
+     * [iso8583_transact](#iso8583_transact)
+     * [iso8583_analyze](#iso8583_analyze)
+     * [iso8583_get_int](#iso8583_get_int)
+     * [iso8583_get_string](#iso8583_get_string)
+          
 ## Card Reading Functions
 
   Card data input.
@@ -875,3 +885,88 @@
   POSXML **wait** call:
   [https://docs.cloudwalk.io/en/posxml/commands/wait]
   
+## ISO8583
+
+### iso8583_loadconfig
+  Loads the iso8583 bitmap config table.
+
+    int iso8583_loadconfig(string filename)
+
+  POSXML **iso8583.initfieldtable** call:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.initfieldtable]
+
+### iso8583_init_message
+  Initialize a ISO8583 message buffer
+  
+    int iso8583_init_message (string format, string id, 
+                              string &variablemessage)
+                              
+  POSXML **iso8583.initmessage** call:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.initmessage]
+
+### iso8583_put_string
+  Puts a string into a iso8583 field
+  
+    int iso8583_put_string(int fieldnumber, string value)
+    
+  POSXML **iso8583.putfield** call with **type** parameter set 
+  to **"string"**:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.putfield]
+
+### iso8583_put_int
+  Puts an integer into a iso8583 field
+  
+    int iso8583_put_int(int fieldnumber, int value)
+  
+  POSXML **iso8583.putfield** call with **type** parameter set
+  to **"integer"**:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.putfield]
+
+### iso8583_end_message
+  Finalizes the iso8583 message generation, formatting the message
+  and storing it into the variable passed to the `iso8583_init_message`
+  function.
+  
+    int iso8583_end_message(int &variableSize)
+    
+  POSXML **iso8583.endmessage** call:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.endmessage]
+
+### iso8583_transact
+  Generates the message with size header, sends it to the authorizer, 
+  and receives the response message.
+   
+    int iso8583_transact (string channel, string header, string trailler,
+                          string isomsg, string &variableresponse)
+                          
+  POSXML **iso8583.transactmessage** call:
+  [https://docs/cloudwalk.io/en/posxml/commands/iso8583.transactmessage]                            
+
+### iso8583_analyze
+  Parses the iso8583 message and initializes the global state of the
+  iso interpreting process.
+   
+    int iso8583_analyze (string format, int size, string &variableid,
+                         string &variablemessage)
+                          
+  POSXML **iso8583.analyzemessage** call:
+  [https://docs/cloudwalk.io/en/posxml/commands/iso8583.analyzemessage]
+                              
+### iso8583_get_int
+  Gets the value of an integer field from an iso8583 message.
+  
+    int iso8583_get_int(int fieldnumber, int &variablevalue)
+
+  POSXML **iso8583.getfield** call with **type** parameter set
+  to **"integer"**:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.getfield]
+
+### iso8583_get_string
+  Gets the value of a string field from an iso8583 message.
+  
+    int iso8583_get_string (int fieldnumber, string &variablevalue)
+
+  POSXML **iso8583.getfield** call with **type** parameter set
+  to **"string"**:
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.getfield]
+
