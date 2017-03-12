@@ -33,6 +33,7 @@ from ..objfile import (UndefinedFunction, InvalidCallException, Module,
                        DuplicateVariableException, BlockStatement,
                        Function)
 from ..objfile.typedefs import (INT, STRING, VOID, UNDEF,
+                                ExternalConstant,
                                 StringConstant, IntConstant, VarValue,
                                 FunctionReturnValue, ExpressionValue,
                                 RelationalExpressionValue,
@@ -40,6 +41,7 @@ from ..objfile.typedefs import (INT, STRING, VOID, UNDEF,
                                 NegatedValue, Assignment, FunctionCall,
                                 BreakStatement, IncDecStatement, IfThenElse,
                                 WhileStatement, ForStatement, ReturnStatement)
+
 
 # Utility functions:
 
@@ -102,7 +104,7 @@ class CompilerListener(SimplePOSListener):
 
     def _printError(self, line, column, message):
         print("%s (%d,%d) ERROR: %s" % (self.module.sourceFile, line,
-                                        column+1, message))
+                                        column + 1, message))
 
     # Enter a parse tree produced by SimplePOSParser#moduledef.
     def enterModuledef(self, ctx: SimplePOSParser.ModuledefContext):
@@ -139,7 +141,7 @@ class CompilerListener(SimplePOSListener):
 
     # Enter a parse tree produced by SimplePOSParser#vardef.
     def enterVardef(self, ctx: SimplePOSParser.VardefContext):
-        self.valueStack.append ([])
+        self.valueStack.append([])
 
     # Exit a parse tree produced by SimplePOSParser#vardef.
     def exitVardef(self, ctx: SimplePOSParser.VardefContext):
@@ -162,7 +164,7 @@ class CompilerListener(SimplePOSListener):
         value = None
         if ctx.ASSIGN():
             value = self.valueStack.pop()
-        self.valueStack[-1].append ( (varName,value) )
+        self.valueStack[-1].append((varName, value))
 
     # Exit a parse tree produced by SimplePOSParser#value.
     def exitValue(self, ctx: SimplePOSParser.ValueContext):
@@ -330,8 +332,8 @@ class CompilerListener(SimplePOSListener):
             variable = self.scope.findVariable(varName)
             stm = IncDecStatement(variable, operator.getText())
             self.scope.addStatement(stm)
-        # we will not addStatement for an attribution because the
-        # attribution method already does it.
+            # we will not addStatement for an attribution because the
+            # attribution method already does it.
 
     # Enter a parse tree produced by SimplePOSParser#blockstm.
     def enterBlockstm(self, ctx: SimplePOSParser.BlockstmContext):
@@ -381,11 +383,21 @@ class CompilerListener(SimplePOSListener):
         self.scope.addStatement(stm)
 
     # Exit a parse tree produced by SimplePOSParser#constdef_item.
-    def exitConstdef_item(self, ctx:SimplePOSParser.Constdef_itemContext):
+    def exitConstdef_item(self, ctx: SimplePOSParser.Constdef_itemContext):
         constName = ctx.ID().getText()
         if ctx.intvalue():
             constValue = IntConstant(ctx.intvalue().getText())
         else:
             constValue = StringConstant(ctx.STRVALUE().getText()[1:-1])
         self.constants[constName] = constValue
+        self.module.addLocalConstant(constName, constValue)
 
+    # Exit a parse tree produced by SimplePOSParser#constdef.
+    def exitConstdef(self, ctx: SimplePOSParser.ConstdefContext):
+        if ctx.EXTERN():
+            names = [x.getText() for x in ctx.ID()]
+            type = typeFromTypename(ctx.typename())
+            for item in names:
+                constant = ExternalConstant(item, type)
+                self.module.addExternalConstant(item, constant)
+                self.constants[item] = constant

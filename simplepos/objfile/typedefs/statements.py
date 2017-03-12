@@ -25,7 +25,7 @@
 """
 
 from .types import INT, STRING, VOID, UNDEF
-from .values import IntConstant, valueSetter
+from .values import IntConstant, valueSetter, ExternalConstant
 from .variables import variableSetter
 
 
@@ -55,6 +55,8 @@ class Statement(object):
         # placeholder to be overwritten in statements that use variables
         pass
 
+    def resolveExternalConstant(self, constantName, constantValue):
+        pass
 
 class BreakStatement(Statement):
     "break statement"
@@ -129,6 +131,11 @@ class ReturnStatement(Statement):
     def replaceVariableReferences(self, varName, variable):
         self.value.replaceVariableReferences(varName, variable)
 
+    def resolveExternalConstant(self, constantName, constantValue):
+        if isinstance(self.value, ExternalConstant):
+            if self.value.name == constantName:
+                self.value = constantValue
+
 
 class Assignment(Statement):
     """
@@ -167,6 +174,12 @@ class Assignment(Statement):
         if self.variable.name == varName:
             self.variable = variable
         self.value.replaceVariableReferences(varName, variable)
+
+    def resolveExternalConstant(self, constantName, constantValue):
+        if isinstance(self.value, ExternalConstant):
+            if self.value.name == constantName:
+                self.value = constantValue
+
 
 
 class FunctionCall(Statement):
@@ -226,6 +239,19 @@ class FunctionCall(Statement):
     def replaceVariableReferences(self, varName, variable):
         for argument in self.arguments:
             argument.replaceVariableReferences(varName, variable)
+
+    def resolveExternalConstant(self, constantName, constantValue):
+        for i in range(len(self.arguments)):
+            argument = self.arguments[i]
+            if isinstance(argument, ExternalConstant):
+                if argument.name == constantName:
+                    self.arguments[i] = constantValue
+            else:
+                try:
+                    argument.resolveExternalConstant(constantName,
+                                                     constantValue)
+                except AttributeError:
+                    pass
 
 
 class IfThenElse(Statement):
@@ -317,6 +343,15 @@ class IfThenElse(Statement):
         if self.elseBlock:
             self.elseBlock.replaceVariableReferences(varName, variable)
 
+    def resolveExternalConstant(self, constantName, constantValue):
+        self.condition.resolveExternalConstant(constantName, constantValue)
+        if self.ifBlock:
+            self.ifBlock.resolveExternalConstant(self, constantName,
+                                                 constantValue)
+        if self.elseBlock:
+            self.elseBlock.replaceExternalConstant(self, constantName,
+                                                   constantValue)
+
     def __str__(self):
         return self.prefixedPrint("")
 
@@ -363,6 +398,9 @@ class WhileStatement(Statement):
         self.condition.replaceVariableReferences(varName, variable)
         self.block.replaceVariableReferences(varName, variable)
 
+    def resolveExternalConstant(self, constantName, constantValue):
+        self.condition.resolveExternalConstant(constantName, constantValue)
+        self.block.resolveExternalConstant(constantName, constantValue)
 
 class ForStatement(WhileStatement):
     """
@@ -398,8 +436,17 @@ class ForStatement(WhileStatement):
                                         self.increment)) + str(self.block)
 
     def replaceVariableReferences(self, varName, variable):
-        super(ForStatement).replaceVariableReferences(varName, variable)
+        super(ForStatement, self).replaceVariableReferences(varName, variable)
         if self.initialization:
             self.initialization.replaceVariableReferences(varName, variable)
         if self.increment:
             self.increment.replaceVariableReferences(varName, variable)
+
+    def resolveExternalConstant(self, constantName, constantValue):
+        super(ForStatement, self).resolveExternalConstant(constantName,
+                                                          constantValue)
+        if self.initialization:
+            self.initialization.resolveExternalConstant(constantName,
+                                                        constantValue)
+        if self.increment:
+            self.increment.resolveEsternalConstant(constantName, constantValue)

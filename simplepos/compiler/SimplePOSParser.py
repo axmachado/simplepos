@@ -29,8 +29,8 @@ from io import StringIO
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\61")
-        buf.write("\u016f\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\62")
+        buf.write("\u017e\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -44,155 +44,163 @@ def serializedATN():
         buf.write("\3\6\3\6\3\7\3\7\3\7\5\7\u008e\n\7\3\b\5\b\u0091\n\b\3")
         buf.write("\b\3\b\3\b\3\b\7\b\u0097\n\b\f\b\16\b\u009a\13\b\3\b\3")
         buf.write("\b\3\t\3\t\3\t\3\t\3\t\3\t\5\t\u00a4\n\t\3\n\3\n\3\n\3")
-        buf.write("\n\7\n\u00aa\n\n\f\n\16\n\u00ad\13\n\3\n\3\n\3\13\3\13")
-        buf.write("\3\f\3\f\5\f\u00b5\n\f\3\f\3\f\3\r\3\r\3\r\7\r\u00bc\n")
-        buf.write("\r\f\r\16\r\u00bf\13\r\3\16\6\16\u00c2\n\16\r\16\16\16")
-        buf.write("\u00c3\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00cc\n\17\3")
-        buf.write("\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\21\3\21\3\21")
-        buf.write("\3\21\5\21\u00da\n\21\3\22\3\22\3\22\3\22\5\22\u00e0\n")
-        buf.write("\22\3\22\3\22\3\23\3\23\3\23\5\23\u00e7\n\23\3\23\3\23")
-        buf.write("\3\24\3\24\3\24\7\24\u00ee\n\24\f\24\16\24\u00f1\13\24")
-        buf.write("\3\25\3\25\3\25\3\26\3\26\5\26\u00f8\n\26\3\27\3\27\7")
-        buf.write("\27\u00fc\n\27\f\27\16\27\u00ff\13\27\3\30\3\30\3\30\3")
-        buf.write("\31\3\31\7\31\u0106\n\31\f\31\16\31\u0109\13\31\3\32\3")
-        buf.write("\32\3\32\3\33\3\33\7\33\u0110\n\33\f\33\16\33\u0113\13")
-        buf.write("\33\3\34\3\34\3\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35")
-        buf.write("\3\35\3\35\3\35\3\35\3\35\3\35\5\35\u0125\n\35\3\36\5")
-        buf.write("\36\u0128\n\36\3\36\3\36\7\36\u012c\n\36\f\36\16\36\u012f")
-        buf.write("\13\36\3\37\3\37\3\37\3 \3 \7 \u0136\n \f \16 \u0139\13")
-        buf.write(" \3!\3!\3!\3\"\3\"\3\"\3\"\3#\3#\5#\u0144\n#\3#\7#\u0147")
-        buf.write("\n#\f#\16#\u014a\13#\3#\3#\3$\5$\u014f\n$\3$\6$\u0152")
-        buf.write("\n$\r$\16$\u0153\3%\3%\3%\3%\3%\3%\3%\5%\u015d\n%\3&\3")
-        buf.write("&\3&\3&\3&\3&\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'")
-        buf.write("\3\'\2\2(\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&")
-        buf.write("(*,.\60\62\64\668:<>@BDFHJL\2\b\3\2\6\7\3\2)*\3\2\32\33")
-        buf.write("\3\2\34\36\3\2!\"\3\2#(\u017c\2O\3\2\2\2\4Z\3\2\2\2\6")
-        buf.write("f\3\2\2\2\bw\3\2\2\2\n{\3\2\2\2\f\u008a\3\2\2\2\16\u0090")
-        buf.write("\3\2\2\2\20\u00a3\3\2\2\2\22\u00a5\3\2\2\2\24\u00b0\3")
-        buf.write("\2\2\2\26\u00b2\3\2\2\2\30\u00b8\3\2\2\2\32\u00c1\3\2")
-        buf.write("\2\2\34\u00cb\3\2\2\2\36\u00cd\3\2\2\2 \u00d9\3\2\2\2")
-        buf.write("\"\u00db\3\2\2\2$\u00e3\3\2\2\2&\u00ea\3\2\2\2(\u00f2")
-        buf.write("\3\2\2\2*\u00f7\3\2\2\2,\u00f9\3\2\2\2.\u0100\3\2\2\2")
-        buf.write("\60\u0103\3\2\2\2\62\u010a\3\2\2\2\64\u010d\3\2\2\2\66")
-        buf.write("\u0114\3\2\2\28\u0124\3\2\2\2:\u0127\3\2\2\2<\u0130\3")
-        buf.write("\2\2\2>\u0133\3\2\2\2@\u013a\3\2\2\2B\u013d\3\2\2\2D\u0141")
-        buf.write("\3\2\2\2F\u014e\3\2\2\2H\u0155\3\2\2\2J\u015e\3\2\2\2")
-        buf.write("L\u0164\3\2\2\2NP\5\4\3\2ON\3\2\2\2OP\3\2\2\2PR\3\2\2")
-        buf.write("\2QS\5\6\4\2RQ\3\2\2\2RS\3\2\2\2SU\3\2\2\2TV\5\b\5\2U")
-        buf.write("T\3\2\2\2UV\3\2\2\2VW\3\2\2\2WX\5\32\16\2XY\7\2\2\3Y\3")
-        buf.write("\3\2\2\2Z[\7\3\2\2[a\7,\2\2\\^\7\22\2\2]_\5\30\r\2^]\3")
-        buf.write("\2\2\2^_\3\2\2\2_`\3\2\2\2`b\7\23\2\2a\\\3\2\2\2ab\3\2")
-        buf.write("\2\2bc\3\2\2\2cd\7\27\2\2d\5\3\2\2\2eg\5\22\n\2fe\3\2")
-        buf.write("\2\2gh\3\2\2\2hf\3\2\2\2hi\3\2\2\2i\7\3\2\2\2jl\5\16\b")
-        buf.write("\2kj\3\2\2\2lm\3\2\2\2mk\3\2\2\2mn\3\2\2\2nx\3\2\2\2o")
-        buf.write("q\7\24\2\2pr\5\16\b\2qp\3\2\2\2rs\3\2\2\2sq\3\2\2\2st")
-        buf.write("\3\2\2\2tu\3\2\2\2uv\7\25\2\2vx\3\2\2\2wk\3\2\2\2wo\3")
-        buf.write("\2\2\2x\t\3\2\2\2y|\5\24\13\2z|\7\b\2\2{y\3\2\2\2{z\3")
-        buf.write("\2\2\2|}\3\2\2\2}~\7,\2\2~\u0080\7\22\2\2\177\u0081\5")
-        buf.write("\30\r\2\u0080\177\3\2\2\2\u0080\u0081\3\2\2\2\u0081\u0082")
-        buf.write("\3\2\2\2\u0082\u0083\7\23\2\2\u0083\u0085\7\24\2\2\u0084")
-        buf.write("\u0086\5\b\5\2\u0085\u0084\3\2\2\2\u0085\u0086\3\2\2\2")
-        buf.write("\u0086\u0087\3\2\2\2\u0087\u0088\5\32\16\2\u0088\u0089")
-        buf.write("\7\25\2\2\u0089\13\3\2\2\2\u008a\u008d\7,\2\2\u008b\u008c")
-        buf.write("\7\31\2\2\u008c\u008e\5*\26\2\u008d\u008b\3\2\2\2\u008d")
-        buf.write("\u008e\3\2\2\2\u008e\r\3\2\2\2\u008f\u0091\7\4\2\2\u0090")
-        buf.write("\u008f\3\2\2\2\u0090\u0091\3\2\2\2\u0091\u0092\3\2\2\2")
-        buf.write("\u0092\u0093\5\24\13\2\u0093\u0098\5\f\7\2\u0094\u0095")
-        buf.write("\7\26\2\2\u0095\u0097\5\f\7\2\u0096\u0094\3\2\2\2\u0097")
-        buf.write("\u009a\3\2\2\2\u0098\u0096\3\2\2\2\u0098\u0099\3\2\2\2")
-        buf.write("\u0099\u009b\3\2\2\2\u009a\u0098\3\2\2\2\u009b\u009c\7")
-        buf.write("\27\2\2\u009c\17\3\2\2\2\u009d\u009e\7,\2\2\u009e\u009f")
-        buf.write("\7\31\2\2\u009f\u00a4\7.\2\2\u00a0\u00a1\7,\2\2\u00a1")
-        buf.write("\u00a2\7\31\2\2\u00a2\u00a4\5F$\2\u00a3\u009d\3\2\2\2")
-        buf.write("\u00a3\u00a0\3\2\2\2\u00a4\21\3\2\2\2\u00a5\u00a6\7\5")
-        buf.write("\2\2\u00a6\u00ab\5\20\t\2\u00a7\u00a8\7\26\2\2\u00a8\u00aa")
-        buf.write("\5\20\t\2\u00a9\u00a7\3\2\2\2\u00aa\u00ad\3\2\2\2\u00ab")
-        buf.write("\u00a9\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ae\3\2\2\2")
-        buf.write("\u00ad\u00ab\3\2\2\2\u00ae\u00af\7\27\2\2\u00af\23\3\2")
-        buf.write("\2\2\u00b0\u00b1\t\2\2\2\u00b1\25\3\2\2\2\u00b2\u00b4")
-        buf.write("\5\24\13\2\u00b3\u00b5\7\30\2\2\u00b4\u00b3\3\2\2\2\u00b4")
-        buf.write("\u00b5\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b7\7,\2\2")
-        buf.write("\u00b7\27\3\2\2\2\u00b8\u00bd\5\26\f\2\u00b9\u00ba\7\26")
-        buf.write("\2\2\u00ba\u00bc\5\26\f\2\u00bb\u00b9\3\2\2\2\u00bc\u00bf")
-        buf.write("\3\2\2\2\u00bd\u00bb\3\2\2\2\u00bd\u00be\3\2\2\2\u00be")
-        buf.write("\31\3\2\2\2\u00bf\u00bd\3\2\2\2\u00c0\u00c2\5\34\17\2")
-        buf.write("\u00c1\u00c0\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\u00c1\3")
-        buf.write("\2\2\2\u00c3\u00c4\3\2\2\2\u00c4\33\3\2\2\2\u00c5\u00cc")
-        buf.write("\5\36\20\2\u00c6\u00cc\5D#\2\u00c7\u00cc\5H%\2\u00c8\u00cc")
-        buf.write("\5J&\2\u00c9\u00cc\5L\'\2\u00ca\u00cc\5\n\6\2\u00cb\u00c5")
-        buf.write("\3\2\2\2\u00cb\u00c6\3\2\2\2\u00cb\u00c7\3\2\2\2\u00cb")
-        buf.write("\u00c8\3\2\2\2\u00cb\u00c9\3\2\2\2\u00cb\u00ca\3\2\2\2")
-        buf.write("\u00cc\35\3\2\2\2\u00cd\u00ce\5 \21\2\u00ce\u00cf\7\27")
-        buf.write("\2\2\u00cf\37\3\2\2\2\u00d0\u00da\5$\23\2\u00d1\u00da")
-        buf.write("\5\"\22\2\u00d2\u00da\5B\"\2\u00d3\u00da\5(\25\2\u00d4")
-        buf.write("\u00da\7\16\2\2\u00d5\u00d6\7,\2\2\u00d6\u00da\t\3\2\2")
-        buf.write("\u00d7\u00d8\t\3\2\2\u00d8\u00da\7,\2\2\u00d9\u00d0\3")
-        buf.write("\2\2\2\u00d9\u00d1\3\2\2\2\u00d9\u00d2\3\2\2\2\u00d9\u00d3")
-        buf.write("\3\2\2\2\u00d9\u00d4\3\2\2\2\u00d9\u00d5\3\2\2\2\u00d9")
-        buf.write("\u00d7\3\2\2\2\u00da!\3\2\2\2\u00db\u00dc\7\21\2\2\u00dc")
-        buf.write("\u00dd\7,\2\2\u00dd\u00df\7\22\2\2\u00de\u00e0\5&\24\2")
-        buf.write("\u00df\u00de\3\2\2\2\u00df\u00e0\3\2\2\2\u00e0\u00e1\3")
-        buf.write("\2\2\2\u00e1\u00e2\7\23\2\2\u00e2#\3\2\2\2\u00e3\u00e4")
-        buf.write("\7,\2\2\u00e4\u00e6\7\22\2\2\u00e5\u00e7\5&\24\2\u00e6")
-        buf.write("\u00e5\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7\u00e8\3\2\2\2")
-        buf.write("\u00e8\u00e9\7\23\2\2\u00e9%\3\2\2\2\u00ea\u00ef\5*\26")
-        buf.write("\2\u00eb\u00ec\7\26\2\2\u00ec\u00ee\5*\26\2\u00ed\u00eb")
-        buf.write("\3\2\2\2\u00ee\u00f1\3\2\2\2\u00ef\u00ed\3\2\2\2\u00ef")
-        buf.write("\u00f0\3\2\2\2\u00f0\'\3\2\2\2\u00f1\u00ef\3\2\2\2\u00f2")
-        buf.write("\u00f3\7\20\2\2\u00f3\u00f4\5*\26\2\u00f4)\3\2\2\2\u00f5")
-        buf.write("\u00f8\7.\2\2\u00f6\u00f8\5,\27\2\u00f7\u00f5\3\2\2\2")
-        buf.write("\u00f7\u00f6\3\2\2\2\u00f8+\3\2\2\2\u00f9\u00fd\5\60\31")
-        buf.write("\2\u00fa\u00fc\5.\30\2\u00fb\u00fa\3\2\2\2\u00fc\u00ff")
-        buf.write("\3\2\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fe\3\2\2\2\u00fe")
-        buf.write("-\3\2\2\2\u00ff\u00fd\3\2\2\2\u0100\u0101\t\4\2\2\u0101")
-        buf.write("\u0102\5\60\31\2\u0102/\3\2\2\2\u0103\u0107\5\64\33\2")
-        buf.write("\u0104\u0106\5\62\32\2\u0105\u0104\3\2\2\2\u0106\u0109")
-        buf.write("\3\2\2\2\u0107\u0105\3\2\2\2\u0107\u0108\3\2\2\2\u0108")
-        buf.write("\61\3\2\2\2\u0109\u0107\3\2\2\2\u010a\u010b\t\5\2\2\u010b")
-        buf.write("\u010c\5\64\33\2\u010c\63\3\2\2\2\u010d\u0111\58\35\2")
-        buf.write("\u010e\u0110\5\66\34\2\u010f\u010e\3\2\2\2\u0110\u0113")
-        buf.write("\3\2\2\2\u0111\u010f\3\2\2\2\u0111\u0112\3\2\2\2\u0112")
-        buf.write("\65\3\2\2\2\u0113\u0111\3\2\2\2\u0114\u0115\7\37\2\2\u0115")
-        buf.write("\u0116\58\35\2\u0116\67\3\2\2\2\u0117\u0125\7,\2\2\u0118")
-        buf.write("\u0125\5F$\2\u0119\u0125\5$\23\2\u011a\u0125\7\t\2\2\u011b")
-        buf.write("\u0125\7\n\2\2\u011c\u011d\7\22\2\2\u011d\u011e\5,\27")
-        buf.write("\2\u011e\u011f\7\23\2\2\u011f\u0125\3\2\2\2\u0120\u0121")
-        buf.write("\7\22\2\2\u0121\u0122\5:\36\2\u0122\u0123\7\23\2\2\u0123")
-        buf.write("\u0125\3\2\2\2\u0124\u0117\3\2\2\2\u0124\u0118\3\2\2\2")
-        buf.write("\u0124\u0119\3\2\2\2\u0124\u011a\3\2\2\2\u0124\u011b\3")
-        buf.write("\2\2\2\u0124\u011c\3\2\2\2\u0124\u0120\3\2\2\2\u01259")
-        buf.write("\3\2\2\2\u0126\u0128\7 \2\2\u0127\u0126\3\2\2\2\u0127")
-        buf.write("\u0128\3\2\2\2\u0128\u0129\3\2\2\2\u0129\u012d\5> \2\u012a")
-        buf.write("\u012c\5<\37\2\u012b\u012a\3\2\2\2\u012c\u012f\3\2\2\2")
-        buf.write("\u012d\u012b\3\2\2\2\u012d\u012e\3\2\2\2\u012e;\3\2\2")
-        buf.write("\2\u012f\u012d\3\2\2\2\u0130\u0131\t\6\2\2\u0131\u0132")
-        buf.write("\5> \2\u0132=\3\2\2\2\u0133\u0137\5*\26\2\u0134\u0136")
-        buf.write("\5@!\2\u0135\u0134\3\2\2\2\u0136\u0139\3\2\2\2\u0137\u0135")
-        buf.write("\3\2\2\2\u0137\u0138\3\2\2\2\u0138?\3\2\2\2\u0139\u0137")
-        buf.write("\3\2\2\2\u013a\u013b\t\7\2\2\u013b\u013c\5*\26\2\u013c")
-        buf.write("A\3\2\2\2\u013d\u013e\7,\2\2\u013e\u013f\7\31\2\2\u013f")
-        buf.write("\u0140\5*\26\2\u0140C\3\2\2\2\u0141\u0143\7\24\2\2\u0142")
-        buf.write("\u0144\5\b\5\2\u0143\u0142\3\2\2\2\u0143\u0144\3\2\2\2")
-        buf.write("\u0144\u0148\3\2\2\2\u0145\u0147\5\34\17\2\u0146\u0145")
-        buf.write("\3\2\2\2\u0147\u014a\3\2\2\2\u0148\u0146\3\2\2\2\u0148")
-        buf.write("\u0149\3\2\2\2\u0149\u014b\3\2\2\2\u014a\u0148\3\2\2\2")
-        buf.write("\u014b\u014c\7\25\2\2\u014cE\3\2\2\2\u014d\u014f\7\33")
-        buf.write("\2\2\u014e\u014d\3\2\2\2\u014e\u014f\3\2\2\2\u014f\u0151")
-        buf.write("\3\2\2\2\u0150\u0152\7-\2\2\u0151\u0150\3\2\2\2\u0152")
-        buf.write("\u0153\3\2\2\2\u0153\u0151\3\2\2\2\u0153\u0154\3\2\2\2")
-        buf.write("\u0154G\3\2\2\2\u0155\u0156\7\13\2\2\u0156\u0157\7\22")
-        buf.write("\2\2\u0157\u0158\5:\36\2\u0158\u0159\7\23\2\2\u0159\u015c")
-        buf.write("\5D#\2\u015a\u015b\7\f\2\2\u015b\u015d\5D#\2\u015c\u015a")
-        buf.write("\3\2\2\2\u015c\u015d\3\2\2\2\u015dI\3\2\2\2\u015e\u015f")
-        buf.write("\7\r\2\2\u015f\u0160\7\22\2\2\u0160\u0161\5:\36\2\u0161")
-        buf.write("\u0162\7\23\2\2\u0162\u0163\5D#\2\u0163K\3\2\2\2\u0164")
-        buf.write("\u0165\7\17\2\2\u0165\u0166\7\22\2\2\u0166\u0167\5 \21")
-        buf.write("\2\u0167\u0168\7\27\2\2\u0168\u0169\5:\36\2\u0169\u016a")
-        buf.write("\7\27\2\2\u016a\u016b\5 \21\2\u016b\u016c\7\23\2\2\u016c")
-        buf.write("\u016d\5D#\2\u016dM\3\2\2\2(ORU^ahmsw{\u0080\u0085\u008d")
-        buf.write("\u0090\u0098\u00a3\u00ab\u00b4\u00bd\u00c3\u00cb\u00d9")
-        buf.write("\u00df\u00e6\u00ef\u00f7\u00fd\u0107\u0111\u0124\u0127")
-        buf.write("\u012d\u0137\u0143\u0148\u014e\u0153\u015c")
+        buf.write("\n\7\n\u00aa\n\n\f\n\16\n\u00ad\13\n\3\n\3\n\3\n\3\n\3")
+        buf.write("\n\3\n\3\n\3\n\7\n\u00b7\n\n\f\n\16\n\u00ba\13\n\3\n\3")
+        buf.write("\n\5\n\u00be\n\n\3\13\3\13\3\f\3\f\5\f\u00c4\n\f\3\f\3")
+        buf.write("\f\3\r\3\r\3\r\7\r\u00cb\n\r\f\r\16\r\u00ce\13\r\3\16")
+        buf.write("\6\16\u00d1\n\16\r\16\16\16\u00d2\3\17\3\17\3\17\3\17")
+        buf.write("\3\17\3\17\5\17\u00db\n\17\3\20\3\20\3\20\3\21\3\21\3")
+        buf.write("\21\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u00e9\n\21\3\22")
+        buf.write("\3\22\3\22\3\22\5\22\u00ef\n\22\3\22\3\22\3\23\3\23\3")
+        buf.write("\23\5\23\u00f6\n\23\3\23\3\23\3\24\3\24\3\24\7\24\u00fd")
+        buf.write("\n\24\f\24\16\24\u0100\13\24\3\25\3\25\3\25\3\26\3\26")
+        buf.write("\5\26\u0107\n\26\3\27\3\27\7\27\u010b\n\27\f\27\16\27")
+        buf.write("\u010e\13\27\3\30\3\30\3\30\3\31\3\31\7\31\u0115\n\31")
+        buf.write("\f\31\16\31\u0118\13\31\3\32\3\32\3\32\3\33\3\33\7\33")
+        buf.write("\u011f\n\33\f\33\16\33\u0122\13\33\3\34\3\34\3\34\3\35")
+        buf.write("\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35")
+        buf.write("\3\35\5\35\u0134\n\35\3\36\5\36\u0137\n\36\3\36\3\36\7")
+        buf.write("\36\u013b\n\36\f\36\16\36\u013e\13\36\3\37\3\37\3\37\3")
+        buf.write(" \3 \7 \u0145\n \f \16 \u0148\13 \3!\3!\3!\3\"\3\"\3\"")
+        buf.write("\3\"\3#\3#\5#\u0153\n#\3#\7#\u0156\n#\f#\16#\u0159\13")
+        buf.write("#\3#\3#\3$\5$\u015e\n$\3$\6$\u0161\n$\r$\16$\u0162\3%")
+        buf.write("\3%\3%\3%\3%\3%\3%\5%\u016c\n%\3&\3&\3&\3&\3&\3&\3\'\3")
+        buf.write("\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\3\'\2\2(\2\4\6\b\n")
+        buf.write("\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<")
+        buf.write(">@BDFHJL\2\b\3\2\7\b\3\2*+\3\2\33\34\3\2\35\37\3\2\"#")
+        buf.write("\3\2$)\u018d\2O\3\2\2\2\4Z\3\2\2\2\6f\3\2\2\2\bw\3\2\2")
+        buf.write("\2\n{\3\2\2\2\f\u008a\3\2\2\2\16\u0090\3\2\2\2\20\u00a3")
+        buf.write("\3\2\2\2\22\u00bd\3\2\2\2\24\u00bf\3\2\2\2\26\u00c1\3")
+        buf.write("\2\2\2\30\u00c7\3\2\2\2\32\u00d0\3\2\2\2\34\u00da\3\2")
+        buf.write("\2\2\36\u00dc\3\2\2\2 \u00e8\3\2\2\2\"\u00ea\3\2\2\2$")
+        buf.write("\u00f2\3\2\2\2&\u00f9\3\2\2\2(\u0101\3\2\2\2*\u0106\3")
+        buf.write("\2\2\2,\u0108\3\2\2\2.\u010f\3\2\2\2\60\u0112\3\2\2\2")
+        buf.write("\62\u0119\3\2\2\2\64\u011c\3\2\2\2\66\u0123\3\2\2\28\u0133")
+        buf.write("\3\2\2\2:\u0136\3\2\2\2<\u013f\3\2\2\2>\u0142\3\2\2\2")
+        buf.write("@\u0149\3\2\2\2B\u014c\3\2\2\2D\u0150\3\2\2\2F\u015d\3")
+        buf.write("\2\2\2H\u0164\3\2\2\2J\u016d\3\2\2\2L\u0173\3\2\2\2NP")
+        buf.write("\5\4\3\2ON\3\2\2\2OP\3\2\2\2PR\3\2\2\2QS\5\6\4\2RQ\3\2")
+        buf.write("\2\2RS\3\2\2\2SU\3\2\2\2TV\5\b\5\2UT\3\2\2\2UV\3\2\2\2")
+        buf.write("VW\3\2\2\2WX\5\32\16\2XY\7\2\2\3Y\3\3\2\2\2Z[\7\3\2\2")
+        buf.write("[a\7-\2\2\\^\7\23\2\2]_\5\30\r\2^]\3\2\2\2^_\3\2\2\2_")
+        buf.write("`\3\2\2\2`b\7\24\2\2a\\\3\2\2\2ab\3\2\2\2bc\3\2\2\2cd")
+        buf.write("\7\30\2\2d\5\3\2\2\2eg\5\22\n\2fe\3\2\2\2gh\3\2\2\2hf")
+        buf.write("\3\2\2\2hi\3\2\2\2i\7\3\2\2\2jl\5\16\b\2kj\3\2\2\2lm\3")
+        buf.write("\2\2\2mk\3\2\2\2mn\3\2\2\2nx\3\2\2\2oq\7\25\2\2pr\5\16")
+        buf.write("\b\2qp\3\2\2\2rs\3\2\2\2sq\3\2\2\2st\3\2\2\2tu\3\2\2\2")
+        buf.write("uv\7\26\2\2vx\3\2\2\2wk\3\2\2\2wo\3\2\2\2x\t\3\2\2\2y")
+        buf.write("|\5\24\13\2z|\7\t\2\2{y\3\2\2\2{z\3\2\2\2|}\3\2\2\2}~")
+        buf.write("\7-\2\2~\u0080\7\23\2\2\177\u0081\5\30\r\2\u0080\177\3")
+        buf.write("\2\2\2\u0080\u0081\3\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083")
+        buf.write("\7\24\2\2\u0083\u0085\7\25\2\2\u0084\u0086\5\b\5\2\u0085")
+        buf.write("\u0084\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0087\3\2\2\2")
+        buf.write("\u0087\u0088\5\32\16\2\u0088\u0089\7\26\2\2\u0089\13\3")
+        buf.write("\2\2\2\u008a\u008d\7-\2\2\u008b\u008c\7\32\2\2\u008c\u008e")
+        buf.write("\5*\26\2\u008d\u008b\3\2\2\2\u008d\u008e\3\2\2\2\u008e")
+        buf.write("\r\3\2\2\2\u008f\u0091\7\4\2\2\u0090\u008f\3\2\2\2\u0090")
+        buf.write("\u0091\3\2\2\2\u0091\u0092\3\2\2\2\u0092\u0093\5\24\13")
+        buf.write("\2\u0093\u0098\5\f\7\2\u0094\u0095\7\27\2\2\u0095\u0097")
+        buf.write("\5\f\7\2\u0096\u0094\3\2\2\2\u0097\u009a\3\2\2\2\u0098")
+        buf.write("\u0096\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u009b\3\2\2\2")
+        buf.write("\u009a\u0098\3\2\2\2\u009b\u009c\7\30\2\2\u009c\17\3\2")
+        buf.write("\2\2\u009d\u009e\7-\2\2\u009e\u009f\7\32\2\2\u009f\u00a4")
+        buf.write("\7/\2\2\u00a0\u00a1\7-\2\2\u00a1\u00a2\7\32\2\2\u00a2")
+        buf.write("\u00a4\5F$\2\u00a3\u009d\3\2\2\2\u00a3\u00a0\3\2\2\2\u00a4")
+        buf.write("\21\3\2\2\2\u00a5\u00a6\7\5\2\2\u00a6\u00ab\5\20\t\2\u00a7")
+        buf.write("\u00a8\7\27\2\2\u00a8\u00aa\5\20\t\2\u00a9\u00a7\3\2\2")
+        buf.write("\2\u00aa\u00ad\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ab\u00ac")
+        buf.write("\3\2\2\2\u00ac\u00ae\3\2\2\2\u00ad\u00ab\3\2\2\2\u00ae")
+        buf.write("\u00af\7\30\2\2\u00af\u00be\3\2\2\2\u00b0\u00b1\7\6\2")
+        buf.write("\2\u00b1\u00b2\7\5\2\2\u00b2\u00b3\5\24\13\2\u00b3\u00b8")
+        buf.write("\7-\2\2\u00b4\u00b5\7\27\2\2\u00b5\u00b7\7-\2\2\u00b6")
+        buf.write("\u00b4\3\2\2\2\u00b7\u00ba\3\2\2\2\u00b8\u00b6\3\2\2\2")
+        buf.write("\u00b8\u00b9\3\2\2\2\u00b9\u00bb\3\2\2\2\u00ba\u00b8\3")
+        buf.write("\2\2\2\u00bb\u00bc\7\30\2\2\u00bc\u00be\3\2\2\2\u00bd")
+        buf.write("\u00a5\3\2\2\2\u00bd\u00b0\3\2\2\2\u00be\23\3\2\2\2\u00bf")
+        buf.write("\u00c0\t\2\2\2\u00c0\25\3\2\2\2\u00c1\u00c3\5\24\13\2")
+        buf.write("\u00c2\u00c4\7\31\2\2\u00c3\u00c2\3\2\2\2\u00c3\u00c4")
+        buf.write("\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c6\7-\2\2\u00c6")
+        buf.write("\27\3\2\2\2\u00c7\u00cc\5\26\f\2\u00c8\u00c9\7\27\2\2")
+        buf.write("\u00c9\u00cb\5\26\f\2\u00ca\u00c8\3\2\2\2\u00cb\u00ce")
+        buf.write("\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cc\u00cd\3\2\2\2\u00cd")
+        buf.write("\31\3\2\2\2\u00ce\u00cc\3\2\2\2\u00cf\u00d1\5\34\17\2")
+        buf.write("\u00d0\u00cf\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d0\3")
+        buf.write("\2\2\2\u00d2\u00d3\3\2\2\2\u00d3\33\3\2\2\2\u00d4\u00db")
+        buf.write("\5\36\20\2\u00d5\u00db\5D#\2\u00d6\u00db\5H%\2\u00d7\u00db")
+        buf.write("\5J&\2\u00d8\u00db\5L\'\2\u00d9\u00db\5\n\6\2\u00da\u00d4")
+        buf.write("\3\2\2\2\u00da\u00d5\3\2\2\2\u00da\u00d6\3\2\2\2\u00da")
+        buf.write("\u00d7\3\2\2\2\u00da\u00d8\3\2\2\2\u00da\u00d9\3\2\2\2")
+        buf.write("\u00db\35\3\2\2\2\u00dc\u00dd\5 \21\2\u00dd\u00de\7\30")
+        buf.write("\2\2\u00de\37\3\2\2\2\u00df\u00e9\5$\23\2\u00e0\u00e9")
+        buf.write("\5\"\22\2\u00e1\u00e9\5B\"\2\u00e2\u00e9\5(\25\2\u00e3")
+        buf.write("\u00e9\7\17\2\2\u00e4\u00e5\7-\2\2\u00e5\u00e9\t\3\2\2")
+        buf.write("\u00e6\u00e7\t\3\2\2\u00e7\u00e9\7-\2\2\u00e8\u00df\3")
+        buf.write("\2\2\2\u00e8\u00e0\3\2\2\2\u00e8\u00e1\3\2\2\2\u00e8\u00e2")
+        buf.write("\3\2\2\2\u00e8\u00e3\3\2\2\2\u00e8\u00e4\3\2\2\2\u00e8")
+        buf.write("\u00e6\3\2\2\2\u00e9!\3\2\2\2\u00ea\u00eb\7\22\2\2\u00eb")
+        buf.write("\u00ec\7-\2\2\u00ec\u00ee\7\23\2\2\u00ed\u00ef\5&\24\2")
+        buf.write("\u00ee\u00ed\3\2\2\2\u00ee\u00ef\3\2\2\2\u00ef\u00f0\3")
+        buf.write("\2\2\2\u00f0\u00f1\7\24\2\2\u00f1#\3\2\2\2\u00f2\u00f3")
+        buf.write("\7-\2\2\u00f3\u00f5\7\23\2\2\u00f4\u00f6\5&\24\2\u00f5")
+        buf.write("\u00f4\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7\3\2\2\2")
+        buf.write("\u00f7\u00f8\7\24\2\2\u00f8%\3\2\2\2\u00f9\u00fe\5*\26")
+        buf.write("\2\u00fa\u00fb\7\27\2\2\u00fb\u00fd\5*\26\2\u00fc\u00fa")
+        buf.write("\3\2\2\2\u00fd\u0100\3\2\2\2\u00fe\u00fc\3\2\2\2\u00fe")
+        buf.write("\u00ff\3\2\2\2\u00ff\'\3\2\2\2\u0100\u00fe\3\2\2\2\u0101")
+        buf.write("\u0102\7\21\2\2\u0102\u0103\5*\26\2\u0103)\3\2\2\2\u0104")
+        buf.write("\u0107\7/\2\2\u0105\u0107\5,\27\2\u0106\u0104\3\2\2\2")
+        buf.write("\u0106\u0105\3\2\2\2\u0107+\3\2\2\2\u0108\u010c\5\60\31")
+        buf.write("\2\u0109\u010b\5.\30\2\u010a\u0109\3\2\2\2\u010b\u010e")
+        buf.write("\3\2\2\2\u010c\u010a\3\2\2\2\u010c\u010d\3\2\2\2\u010d")
+        buf.write("-\3\2\2\2\u010e\u010c\3\2\2\2\u010f\u0110\t\4\2\2\u0110")
+        buf.write("\u0111\5\60\31\2\u0111/\3\2\2\2\u0112\u0116\5\64\33\2")
+        buf.write("\u0113\u0115\5\62\32\2\u0114\u0113\3\2\2\2\u0115\u0118")
+        buf.write("\3\2\2\2\u0116\u0114\3\2\2\2\u0116\u0117\3\2\2\2\u0117")
+        buf.write("\61\3\2\2\2\u0118\u0116\3\2\2\2\u0119\u011a\t\5\2\2\u011a")
+        buf.write("\u011b\5\64\33\2\u011b\63\3\2\2\2\u011c\u0120\58\35\2")
+        buf.write("\u011d\u011f\5\66\34\2\u011e\u011d\3\2\2\2\u011f\u0122")
+        buf.write("\3\2\2\2\u0120\u011e\3\2\2\2\u0120\u0121\3\2\2\2\u0121")
+        buf.write("\65\3\2\2\2\u0122\u0120\3\2\2\2\u0123\u0124\7 \2\2\u0124")
+        buf.write("\u0125\58\35\2\u0125\67\3\2\2\2\u0126\u0134\7-\2\2\u0127")
+        buf.write("\u0134\5F$\2\u0128\u0134\5$\23\2\u0129\u0134\7\n\2\2\u012a")
+        buf.write("\u0134\7\13\2\2\u012b\u012c\7\23\2\2\u012c\u012d\5,\27")
+        buf.write("\2\u012d\u012e\7\24\2\2\u012e\u0134\3\2\2\2\u012f\u0130")
+        buf.write("\7\23\2\2\u0130\u0131\5:\36\2\u0131\u0132\7\24\2\2\u0132")
+        buf.write("\u0134\3\2\2\2\u0133\u0126\3\2\2\2\u0133\u0127\3\2\2\2")
+        buf.write("\u0133\u0128\3\2\2\2\u0133\u0129\3\2\2\2\u0133\u012a\3")
+        buf.write("\2\2\2\u0133\u012b\3\2\2\2\u0133\u012f\3\2\2\2\u01349")
+        buf.write("\3\2\2\2\u0135\u0137\7!\2\2\u0136\u0135\3\2\2\2\u0136")
+        buf.write("\u0137\3\2\2\2\u0137\u0138\3\2\2\2\u0138\u013c\5> \2\u0139")
+        buf.write("\u013b\5<\37\2\u013a\u0139\3\2\2\2\u013b\u013e\3\2\2\2")
+        buf.write("\u013c\u013a\3\2\2\2\u013c\u013d\3\2\2\2\u013d;\3\2\2")
+        buf.write("\2\u013e\u013c\3\2\2\2\u013f\u0140\t\6\2\2\u0140\u0141")
+        buf.write("\5> \2\u0141=\3\2\2\2\u0142\u0146\5*\26\2\u0143\u0145")
+        buf.write("\5@!\2\u0144\u0143\3\2\2\2\u0145\u0148\3\2\2\2\u0146\u0144")
+        buf.write("\3\2\2\2\u0146\u0147\3\2\2\2\u0147?\3\2\2\2\u0148\u0146")
+        buf.write("\3\2\2\2\u0149\u014a\t\7\2\2\u014a\u014b\5*\26\2\u014b")
+        buf.write("A\3\2\2\2\u014c\u014d\7-\2\2\u014d\u014e\7\32\2\2\u014e")
+        buf.write("\u014f\5*\26\2\u014fC\3\2\2\2\u0150\u0152\7\25\2\2\u0151")
+        buf.write("\u0153\5\b\5\2\u0152\u0151\3\2\2\2\u0152\u0153\3\2\2\2")
+        buf.write("\u0153\u0157\3\2\2\2\u0154\u0156\5\34\17\2\u0155\u0154")
+        buf.write("\3\2\2\2\u0156\u0159\3\2\2\2\u0157\u0155\3\2\2\2\u0157")
+        buf.write("\u0158\3\2\2\2\u0158\u015a\3\2\2\2\u0159\u0157\3\2\2\2")
+        buf.write("\u015a\u015b\7\26\2\2\u015bE\3\2\2\2\u015c\u015e\7\34")
+        buf.write("\2\2\u015d\u015c\3\2\2\2\u015d\u015e\3\2\2\2\u015e\u0160")
+        buf.write("\3\2\2\2\u015f\u0161\7.\2\2\u0160\u015f\3\2\2\2\u0161")
+        buf.write("\u0162\3\2\2\2\u0162\u0160\3\2\2\2\u0162\u0163\3\2\2\2")
+        buf.write("\u0163G\3\2\2\2\u0164\u0165\7\f\2\2\u0165\u0166\7\23\2")
+        buf.write("\2\u0166\u0167\5:\36\2\u0167\u0168\7\24\2\2\u0168\u016b")
+        buf.write("\5D#\2\u0169\u016a\7\r\2\2\u016a\u016c\5D#\2\u016b\u0169")
+        buf.write("\3\2\2\2\u016b\u016c\3\2\2\2\u016cI\3\2\2\2\u016d\u016e")
+        buf.write("\7\16\2\2\u016e\u016f\7\23\2\2\u016f\u0170\5:\36\2\u0170")
+        buf.write("\u0171\7\24\2\2\u0171\u0172\5D#\2\u0172K\3\2\2\2\u0173")
+        buf.write("\u0174\7\20\2\2\u0174\u0175\7\23\2\2\u0175\u0176\5 \21")
+        buf.write("\2\u0176\u0177\7\30\2\2\u0177\u0178\5:\36\2\u0178\u0179")
+        buf.write("\7\30\2\2\u0179\u017a\5 \21\2\u017a\u017b\7\24\2\2\u017b")
+        buf.write("\u017c\5D#\2\u017cM\3\2\2\2*ORU^ahmsw{\u0080\u0085\u008d")
+        buf.write("\u0090\u0098\u00a3\u00ab\u00b8\u00bd\u00c3\u00cc\u00d2")
+        buf.write("\u00da\u00e8\u00ee\u00f5\u00fe\u0106\u010c\u0116\u0120")
+        buf.write("\u0133\u0136\u013c\u0146\u0152\u0157\u015d\u0162\u016b")
         return buf.getvalue()
 
 
@@ -206,22 +214,23 @@ class SimplePOSParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'module'", "'global'", "'const'", "'int'", 
-                     "'string'", "'void'", "'true'", "'false'", "'if'", 
-                     "'else'", "'while'", "'break'", "'for'", "'return'", 
+    literalNames = [ "<INVALID>", "'module'", "'global'", "'const'", "'extern'", 
+                     "'int'", "'string'", "'void'", "'true'", "'false'", 
+                     "'if'", "'else'", "'while'", "'break'", "'for'", "'return'", 
                      "'callmodule'", "'('", "')'", "'{'", "'}'", "','", 
                      "';'", "'&'", "'='", "'+'", "'-'", "'*'", "'/'", "'%'", 
                      "'^'", "'!'", "'&&'", "'||'", "'>'", "'<'", "'>='", 
                      "'<='", "'=='", "'!='", "'++'", "'--'" ]
 
-    symbolicNames = [ "<INVALID>", "MODULE", "GLOBAL", "CONST", "INT", "STRING", 
-                      "VOID", "TRUE", "FALSE", "IF", "ELSE", "WHILE", "BREAK", 
-                      "FOR", "RETURN", "EXECMODULE", "LPAR", "RPAR", "LCURL", 
-                      "RCURL", "COMMA", "SEMICOLOM", "REFMARK", "ASSIGN", 
-                      "PLUS", "MINUS", "TIMES", "SLASH", "MOD", "EXP", "NOT", 
-                      "AND", "OR", "GT", "LT", "GE", "LE", "EQ", "NE", "INCOPER", 
-                      "DECOPER", "BLOCK_COMMENT", "ID", "DIGIT", "STRVALUE", 
-                      "SINGLELINE_COMMENT", "MULTILINE_COMMENT", "WS" ]
+    symbolicNames = [ "<INVALID>", "MODULE", "GLOBAL", "CONST", "EXTERN", 
+                      "INT", "STRING", "VOID", "TRUE", "FALSE", "IF", "ELSE", 
+                      "WHILE", "BREAK", "FOR", "RETURN", "EXECMODULE", "LPAR", 
+                      "RPAR", "LCURL", "RCURL", "COMMA", "SEMICOLOM", "REFMARK", 
+                      "ASSIGN", "PLUS", "MINUS", "TIMES", "SLASH", "MOD", 
+                      "EXP", "NOT", "AND", "OR", "GT", "LT", "GE", "LE", 
+                      "EQ", "NE", "INCOPER", "DECOPER", "BLOCK_COMMENT", 
+                      "ID", "DIGIT", "STRVALUE", "SINGLELINE_COMMENT", "MULTILINE_COMMENT", 
+                      "WS" ]
 
     RULE_sourcefile = 0
     RULE_moduledef = 1
@@ -275,50 +284,51 @@ class SimplePOSParser ( Parser ):
     MODULE=1
     GLOBAL=2
     CONST=3
-    INT=4
-    STRING=5
-    VOID=6
-    TRUE=7
-    FALSE=8
-    IF=9
-    ELSE=10
-    WHILE=11
-    BREAK=12
-    FOR=13
-    RETURN=14
-    EXECMODULE=15
-    LPAR=16
-    RPAR=17
-    LCURL=18
-    RCURL=19
-    COMMA=20
-    SEMICOLOM=21
-    REFMARK=22
-    ASSIGN=23
-    PLUS=24
-    MINUS=25
-    TIMES=26
-    SLASH=27
-    MOD=28
-    EXP=29
-    NOT=30
-    AND=31
-    OR=32
-    GT=33
-    LT=34
-    GE=35
-    LE=36
-    EQ=37
-    NE=38
-    INCOPER=39
-    DECOPER=40
-    BLOCK_COMMENT=41
-    ID=42
-    DIGIT=43
-    STRVALUE=44
-    SINGLELINE_COMMENT=45
-    MULTILINE_COMMENT=46
-    WS=47
+    EXTERN=4
+    INT=5
+    STRING=6
+    VOID=7
+    TRUE=8
+    FALSE=9
+    IF=10
+    ELSE=11
+    WHILE=12
+    BREAK=13
+    FOR=14
+    RETURN=15
+    EXECMODULE=16
+    LPAR=17
+    RPAR=18
+    LCURL=19
+    RCURL=20
+    COMMA=21
+    SEMICOLOM=22
+    REFMARK=23
+    ASSIGN=24
+    PLUS=25
+    MINUS=26
+    TIMES=27
+    SLASH=28
+    MOD=29
+    EXP=30
+    NOT=31
+    AND=32
+    OR=33
+    GT=34
+    LT=35
+    GE=36
+    LE=37
+    EQ=38
+    NE=39
+    INCOPER=40
+    DECOPER=41
+    BLOCK_COMMENT=42
+    ID=43
+    DIGIT=44
+    STRVALUE=45
+    SINGLELINE_COMMENT=46
+    MULTILINE_COMMENT=47
+    WS=48
 
     def __init__(self, input:TokenStream):
         super().__init__(input)
@@ -385,7 +395,7 @@ class SimplePOSParser ( Parser ):
             self.state = 80
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==SimplePOSParser.CONST:
+            if _la==SimplePOSParser.CONST or _la==SimplePOSParser.EXTERN:
                 self.state = 79
                 self.constblock()
 
@@ -531,7 +541,7 @@ class SimplePOSParser ( Parser ):
                 self.state = 102 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==SimplePOSParser.CONST):
+                if not (_la==SimplePOSParser.CONST or _la==SimplePOSParser.EXTERN):
                     break
 
         except RecognitionException as re:
@@ -978,6 +988,19 @@ class SimplePOSParser ( Parser ):
             else:
                 return self.getToken(SimplePOSParser.COMMA, i)
 
+        def EXTERN(self):
+            return self.getToken(SimplePOSParser.EXTERN, 0)
+
+        def typename(self):
+            return self.getTypedRuleContext(SimplePOSParser.TypenameContext,0)
+
+
+        def ID(self, i:int=None):
+            if i is None:
+                return self.getTokens(SimplePOSParser.ID)
+            else:
+                return self.getToken(SimplePOSParser.ID, i)
+
         def getRuleIndex(self):
             return SimplePOSParser.RULE_constdef
 
@@ -998,25 +1021,58 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_constdef)
         self._la = 0 # Token type
         try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 163
-            self.match(SimplePOSParser.CONST)
-            self.state = 164
-            self.constdef_item()
-            self.state = 169
+            self.state = 187
             self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            while _la==SimplePOSParser.COMMA:
-                self.state = 165
-                self.match(SimplePOSParser.COMMA)
-                self.state = 166
+            token = self._input.LA(1)
+            if token in [SimplePOSParser.CONST]:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 163
+                self.match(SimplePOSParser.CONST)
+                self.state = 164
                 self.constdef_item()
-                self.state = 171
+                self.state = 169
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
+                while _la==SimplePOSParser.COMMA:
+                    self.state = 165
+                    self.match(SimplePOSParser.COMMA)
+                    self.state = 166
+                    self.constdef_item()
+                    self.state = 171
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
 
-            self.state = 172
-            self.match(SimplePOSParser.SEMICOLOM)
+                self.state = 172
+                self.match(SimplePOSParser.SEMICOLOM)
+                pass
+            elif token in [SimplePOSParser.EXTERN]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 174
+                self.match(SimplePOSParser.EXTERN)
+                self.state = 175
+                self.match(SimplePOSParser.CONST)
+                self.state = 176
+                self.typename()
+                self.state = 177
+                self.match(SimplePOSParser.ID)
+                self.state = 182
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                while _la==SimplePOSParser.COMMA:
+                    self.state = 178
+                    self.match(SimplePOSParser.COMMA)
+                    self.state = 179
+                    self.match(SimplePOSParser.ID)
+                    self.state = 184
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
+
+                self.state = 185
+                self.match(SimplePOSParser.SEMICOLOM)
+                pass
+            else:
+                raise NoViableAltException(self)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1058,7 +1114,7 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 174
+            self.state = 189
             _la = self._input.LA(1)
             if not(_la==SimplePOSParser.INT or _la==SimplePOSParser.STRING):
                 self._errHandler.recoverInline(self)
@@ -1110,17 +1166,17 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 176
+            self.state = 191
             self.typename()
-            self.state = 178
+            self.state = 193
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==SimplePOSParser.REFMARK:
-                self.state = 177
+                self.state = 192
                 self.match(SimplePOSParser.REFMARK)
 
 
-            self.state = 180
+            self.state = 195
             self.match(SimplePOSParser.ID)
         except RecognitionException as re:
             localctx.exception = re
@@ -1170,17 +1226,17 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 182
+            self.state = 197
             self.argdef()
-            self.state = 187
+            self.state = 202
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==SimplePOSParser.COMMA:
-                self.state = 183
+                self.state = 198
                 self.match(SimplePOSParser.COMMA)
-                self.state = 184
+                self.state = 199
                 self.argdef()
-                self.state = 189
+                self.state = 204
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1226,13 +1282,13 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 191 
+            self.state = 206 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 190
+                self.state = 205
                 self.stm()
-                self.state = 193 
+                self.state = 208 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.INT) | (1 << SimplePOSParser.STRING) | (1 << SimplePOSParser.VOID) | (1 << SimplePOSParser.IF) | (1 << SimplePOSParser.WHILE) | (1 << SimplePOSParser.BREAK) | (1 << SimplePOSParser.FOR) | (1 << SimplePOSParser.RETURN) | (1 << SimplePOSParser.EXECMODULE) | (1 << SimplePOSParser.LCURL) | (1 << SimplePOSParser.INCOPER) | (1 << SimplePOSParser.DECOPER) | (1 << SimplePOSParser.ID))) != 0)):
@@ -1295,37 +1351,37 @@ class SimplePOSParser ( Parser ):
         localctx = SimplePOSParser.StmContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_stm)
         try:
-            self.state = 201
+            self.state = 216
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [SimplePOSParser.BREAK, SimplePOSParser.RETURN, SimplePOSParser.EXECMODULE, SimplePOSParser.INCOPER, SimplePOSParser.DECOPER, SimplePOSParser.ID]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 195
+                self.state = 210
                 self.simplestm()
                 pass
             elif token in [SimplePOSParser.LCURL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 196
+                self.state = 211
                 self.blockstm()
                 pass
             elif token in [SimplePOSParser.IF]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 197
+                self.state = 212
                 self.ifelse()
                 pass
             elif token in [SimplePOSParser.WHILE]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 198
+                self.state = 213
                 self.whilestm()
                 pass
             elif token in [SimplePOSParser.FOR]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 199
+                self.state = 214
                 self.forstm()
                 pass
             elif token in [SimplePOSParser.INT, SimplePOSParser.STRING, SimplePOSParser.VOID]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 200
+                self.state = 215
                 self.functiondef()
                 pass
             else:
@@ -1372,9 +1428,9 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_simplestm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 203
+            self.state = 218
             self.stmline()
-            self.state = 204
+            self.state = 219
             self.match(SimplePOSParser.SEMICOLOM)
         except RecognitionException as re:
             localctx.exception = re
@@ -1438,44 +1494,44 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 30, self.RULE_stmline)
         self._la = 0 # Token type
         try:
-            self.state = 215
+            self.state = 230
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,23,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 206
+                self.state = 221
                 self.functioncall()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 207
+                self.state = 222
                 self.modulecall()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 208
+                self.state = 223
                 self.assignment()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 209
+                self.state = 224
                 self.returnstm()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 210
+                self.state = 225
                 self.match(SimplePOSParser.BREAK)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 211
+                self.state = 226
                 self.match(SimplePOSParser.ID)
-                self.state = 212
+                self.state = 227
                 _la = self._input.LA(1)
                 if not(_la==SimplePOSParser.INCOPER or _la==SimplePOSParser.DECOPER):
                     self._errHandler.recoverInline(self)
@@ -1486,14 +1542,14 @@ class SimplePOSParser ( Parser ):
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 213
+                self.state = 228
                 _la = self._input.LA(1)
                 if not(_la==SimplePOSParser.INCOPER or _la==SimplePOSParser.DECOPER):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 214
+                self.state = 229
                 self.match(SimplePOSParser.ID)
                 pass
 
@@ -1549,21 +1605,21 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 217
+            self.state = 232
             self.match(SimplePOSParser.EXECMODULE)
-            self.state = 218
+            self.state = 233
             self.match(SimplePOSParser.ID)
-            self.state = 219
+            self.state = 234
             self.match(SimplePOSParser.LPAR)
-            self.state = 221
+            self.state = 236
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TRUE) | (1 << SimplePOSParser.FALSE) | (1 << SimplePOSParser.LPAR) | (1 << SimplePOSParser.MINUS) | (1 << SimplePOSParser.ID) | (1 << SimplePOSParser.DIGIT) | (1 << SimplePOSParser.STRVALUE))) != 0):
-                self.state = 220
+                self.state = 235
                 self.paramlist()
 
 
-            self.state = 223
+            self.state = 238
             self.match(SimplePOSParser.RPAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -1613,19 +1669,19 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 225
+            self.state = 240
             self.match(SimplePOSParser.ID)
-            self.state = 226
+            self.state = 241
             self.match(SimplePOSParser.LPAR)
-            self.state = 228
+            self.state = 243
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TRUE) | (1 << SimplePOSParser.FALSE) | (1 << SimplePOSParser.LPAR) | (1 << SimplePOSParser.MINUS) | (1 << SimplePOSParser.ID) | (1 << SimplePOSParser.DIGIT) | (1 << SimplePOSParser.STRVALUE))) != 0):
-                self.state = 227
+                self.state = 242
                 self.paramlist()
 
 
-            self.state = 230
+            self.state = 245
             self.match(SimplePOSParser.RPAR)
         except RecognitionException as re:
             localctx.exception = re
@@ -1675,17 +1731,17 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 232
+            self.state = 247
             self.value()
-            self.state = 237
+            self.state = 252
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==SimplePOSParser.COMMA:
-                self.state = 233
+                self.state = 248
                 self.match(SimplePOSParser.COMMA)
-                self.state = 234
+                self.state = 249
                 self.value()
-                self.state = 239
+                self.state = 254
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1730,9 +1786,9 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 38, self.RULE_returnstm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 240
+            self.state = 255
             self.match(SimplePOSParser.RETURN)
-            self.state = 241
+            self.state = 256
             self.value()
         except RecognitionException as re:
             localctx.exception = re
@@ -1774,17 +1830,17 @@ class SimplePOSParser ( Parser ):
         localctx = SimplePOSParser.ValueContext(self, self._ctx, self.state)
         self.enterRule(localctx, 40, self.RULE_value)
         try:
-            self.state = 245
+            self.state = 260
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [SimplePOSParser.STRVALUE]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 243
+                self.state = 258
                 self.match(SimplePOSParser.STRVALUE)
                 pass
             elif token in [SimplePOSParser.TRUE, SimplePOSParser.FALSE, SimplePOSParser.LPAR, SimplePOSParser.MINUS, SimplePOSParser.ID, SimplePOSParser.DIGIT]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 244
+                self.state = 259
                 self.expression()
                 pass
             else:
@@ -1836,15 +1892,15 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 247
+            self.state = 262
             self.term()
-            self.state = 251
+            self.state = 266
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==SimplePOSParser.PLUS or _la==SimplePOSParser.MINUS:
-                self.state = 248
+                self.state = 263
                 self.add_sub()
-                self.state = 253
+                self.state = 268
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1893,14 +1949,14 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 254
+            self.state = 269
             _la = self._input.LA(1)
             if not(_la==SimplePOSParser.PLUS or _la==SimplePOSParser.MINUS):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 255
+            self.state = 270
             self.term()
         except RecognitionException as re:
             localctx.exception = re
@@ -1948,15 +2004,15 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 257
+            self.state = 272
             self.factor()
-            self.state = 261
+            self.state = 276
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.SLASH) | (1 << SimplePOSParser.MOD))) != 0):
-                self.state = 258
+                self.state = 273
                 self.times_div()
-                self.state = 263
+                self.state = 278
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2008,14 +2064,14 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 264
+            self.state = 279
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.TIMES) | (1 << SimplePOSParser.SLASH) | (1 << SimplePOSParser.MOD))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 265
+            self.state = 280
             self.factor()
         except RecognitionException as re:
             localctx.exception = re
@@ -2063,15 +2119,15 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 267
+            self.state = 282
             self.atom()
-            self.state = 271
+            self.state = 286
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==SimplePOSParser.EXP:
-                self.state = 268
+                self.state = 283
                 self.rexp()
-                self.state = 273
+                self.state = 288
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2116,9 +2172,9 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 52, self.RULE_rexp)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 274
+            self.state = 289
             self.match(SimplePOSParser.EXP)
-            self.state = 275
+            self.state = 290
             self.atom()
         except RecognitionException as re:
             localctx.exception = re
@@ -2184,56 +2240,56 @@ class SimplePOSParser ( Parser ):
         localctx = SimplePOSParser.AtomContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_atom)
         try:
-            self.state = 290
+            self.state = 305
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,29,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 277
+                self.state = 292
                 self.match(SimplePOSParser.ID)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 278
+                self.state = 293
                 self.intvalue()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 279
+                self.state = 294
                 self.functioncall()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 280
+                self.state = 295
                 self.match(SimplePOSParser.TRUE)
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 281
+                self.state = 296
                 self.match(SimplePOSParser.FALSE)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 282
+                self.state = 297
                 self.match(SimplePOSParser.LPAR)
-                self.state = 283
+                self.state = 298
                 self.expression()
-                self.state = 284
+                self.state = 299
                 self.match(SimplePOSParser.RPAR)
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 286
+                self.state = 301
                 self.match(SimplePOSParser.LPAR)
-                self.state = 287
+                self.state = 302
                 self.log_expression()
-                self.state = 288
+                self.state = 303
                 self.match(SimplePOSParser.RPAR)
                 pass
 
@@ -2287,23 +2343,23 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 293
+            self.state = 308
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==SimplePOSParser.NOT:
-                self.state = 292
+                self.state = 307
                 self.match(SimplePOSParser.NOT)
 
 
-            self.state = 295
+            self.state = 310
             self.log_term()
-            self.state = 299
+            self.state = 314
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==SimplePOSParser.AND or _la==SimplePOSParser.OR:
-                self.state = 296
+                self.state = 311
                 self.log_oper()
-                self.state = 301
+                self.state = 316
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2352,14 +2408,14 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 302
+            self.state = 317
             _la = self._input.LA(1)
             if not(_la==SimplePOSParser.AND or _la==SimplePOSParser.OR):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 303
+            self.state = 318
             self.log_term()
         except RecognitionException as re:
             localctx.exception = re
@@ -2407,15 +2463,15 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 305
+            self.state = 320
             self.value()
-            self.state = 309
+            self.state = 324
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.GT) | (1 << SimplePOSParser.LT) | (1 << SimplePOSParser.GE) | (1 << SimplePOSParser.LE) | (1 << SimplePOSParser.EQ) | (1 << SimplePOSParser.NE))) != 0):
-                self.state = 306
+                self.state = 321
                 self.log_rel()
-                self.state = 311
+                self.state = 326
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2476,14 +2532,14 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 312
+            self.state = 327
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.GT) | (1 << SimplePOSParser.LT) | (1 << SimplePOSParser.GE) | (1 << SimplePOSParser.LE) | (1 << SimplePOSParser.EQ) | (1 << SimplePOSParser.NE))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 313
+            self.state = 328
             self.value()
         except RecognitionException as re:
             localctx.exception = re
@@ -2529,11 +2585,11 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 64, self.RULE_assignment)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 315
+            self.state = 330
             self.match(SimplePOSParser.ID)
-            self.state = 316
+            self.state = 331
             self.match(SimplePOSParser.ASSIGN)
-            self.state = 317
+            self.state = 332
             self.value()
         except RecognitionException as re:
             localctx.exception = re
@@ -2587,27 +2643,27 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 319
+            self.state = 334
             self.match(SimplePOSParser.LCURL)
-            self.state = 321
+            self.state = 336
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,33,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,35,self._ctx)
             if la_ == 1:
-                self.state = 320
+                self.state = 335
                 self.vardefblock()
 
 
-            self.state = 326
+            self.state = 341
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << SimplePOSParser.INT) | (1 << SimplePOSParser.STRING) | (1 << SimplePOSParser.VOID) | (1 << SimplePOSParser.IF) | (1 << SimplePOSParser.WHILE) | (1 << SimplePOSParser.BREAK) | (1 << SimplePOSParser.FOR) | (1 << SimplePOSParser.RETURN) | (1 << SimplePOSParser.EXECMODULE) | (1 << SimplePOSParser.LCURL) | (1 << SimplePOSParser.INCOPER) | (1 << SimplePOSParser.DECOPER) | (1 << SimplePOSParser.ID))) != 0):
-                self.state = 323
+                self.state = 338
                 self.stm()
-                self.state = 328
+                self.state = 343
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 329
+            self.state = 344
             self.match(SimplePOSParser.RCURL)
         except RecognitionException as re:
             localctx.exception = re
@@ -2653,21 +2709,21 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 332
+            self.state = 347
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==SimplePOSParser.MINUS:
-                self.state = 331
+                self.state = 346
                 self.match(SimplePOSParser.MINUS)
 
 
-            self.state = 335 
+            self.state = 350 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 334
+                self.state = 349
                 self.match(SimplePOSParser.DIGIT)
-                self.state = 337 
+                self.state = 352 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==SimplePOSParser.DIGIT):
@@ -2731,23 +2787,23 @@ class SimplePOSParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 339
+            self.state = 354
             self.match(SimplePOSParser.IF)
-            self.state = 340
+            self.state = 355
             self.match(SimplePOSParser.LPAR)
-            self.state = 341
+            self.state = 356
             self.log_expression()
-            self.state = 342
+            self.state = 357
             self.match(SimplePOSParser.RPAR)
-            self.state = 343
+            self.state = 358
             self.blockstm()
-            self.state = 346
+            self.state = 361
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==SimplePOSParser.ELSE:
-                self.state = 344
+                self.state = 359
                 self.match(SimplePOSParser.ELSE)
-                self.state = 345
+                self.state = 360
                 self.blockstm()
 
 
@@ -2802,15 +2858,15 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 72, self.RULE_whilestm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 348
+            self.state = 363
             self.match(SimplePOSParser.WHILE)
-            self.state = 349
+            self.state = 364
             self.match(SimplePOSParser.LPAR)
-            self.state = 350
+            self.state = 365
             self.log_expression()
-            self.state = 351
+            self.state = 366
             self.match(SimplePOSParser.RPAR)
-            self.state = 352
+            self.state = 367
             self.blockstm()
         except RecognitionException as re:
             localctx.exception = re
@@ -2876,23 +2932,23 @@ class SimplePOSParser ( Parser ):
         self.enterRule(localctx, 74, self.RULE_forstm)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 354
+            self.state = 369
             self.match(SimplePOSParser.FOR)
-            self.state = 355
+            self.state = 370
             self.match(SimplePOSParser.LPAR)
-            self.state = 356
+            self.state = 371
             self.stmline()
-            self.state = 357
+            self.state = 372
             self.match(SimplePOSParser.SEMICOLOM)
-            self.state = 358
+            self.state = 373
             self.log_expression()
-            self.state = 359
+            self.state = 374
             self.match(SimplePOSParser.SEMICOLOM)
-            self.state = 360
+            self.state = 375
             self.stmline()
-            self.state = 361
+            self.state = 376
             self.match(SimplePOSParser.RPAR)
-            self.state = 362
+            self.state = 377
             self.blockstm()
         except RecognitionException as re:
             localctx.exception = re

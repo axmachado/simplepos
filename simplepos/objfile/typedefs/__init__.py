@@ -28,7 +28,7 @@ from .variables import Variable, Argument
 from .values import (Value, Constant, IntConstant, StringConstant,
                      VarValue, FunctionReturnValue, BinaryExpressionValue,
                      ExpressionValue, NegatedValue, LogicalExpressionValue,
-                     RelationalExpressionValue)
+                     RelationalExpressionValue, ExternalConstant)
 from .statements import (Statement, BreakStatement, IncDecStatement,
                          Assignment, FunctionCall, IfThenElse, WhileStatement,
                          ForStatement, ReturnStatement)
@@ -38,7 +38,7 @@ __all__ = ['INT', 'STRING', 'VOID', 'UNDEF',
            'Value', 'Constant', 'IntConstant', 'StringConstant',
            'VarValue', 'FunctionReturnValue', 'BinaryExpressionValue',
            'ExpressionValue', 'NegatedValue', 'LogicalExpressionValue',
-           'RelationalExpressionValue',
+           'RelationalExpressionValue', 'UndefinedConstant',
            'Statement', 'BreakStatement', 'IncDecStatement', 'Assignment',
            'FunctionCall', 'IfThenElse', 'WhileStatement', 'ForStatement',
            'ReturnStatement']

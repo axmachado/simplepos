@@ -75,6 +75,10 @@ class Value(object):
         #  placeholder to be overwiten
         pass
 
+    def resolveExternalConstant(self, name, value):
+        """
+        placeholder to be override by subclass
+        """
 
 class Constant(Value):
     """
@@ -104,6 +108,17 @@ class Constant(Value):
     def __str__(self):
         return str(self.value)
 
+
+class ExternalConstant(Constant):
+    """
+    Externally defined constant
+    """
+    def __init__(self, name, type_=STRING):
+        super(ExternalConstant, self).__init__(type_);
+        self.name = name
+
+    def __str__(self):
+        return "external(%s)" % self.name
 
 class IntConstant(Constant):
     "Integer constant"
@@ -188,6 +203,9 @@ class FunctionReturnValue(Value):
         if self.functionCall:
             self.functionCall.replaceVariableReferences(varName, variable)
 
+    def resolveExternalConstant(self, name, value):
+        if self.functionCall:
+            self.functionCall.resolveExternalConstant(name, value)
 
 class BinaryExpressionValue(Value):
     """
@@ -264,6 +282,23 @@ class BinaryExpressionValue(Value):
         self.left.replaceVariableReferences(varName, variable)
         self.right.replaceVariableReferences(varName, variable)
 
+    def resolveExternalConstant(self, name, value):
+        newValues = []
+        for localValue in self.left, self.right:
+            newValue = localValue
+            if isinstance(localValue, ExternalConstant):
+                if localValue.name == name:
+                    newValue = value
+            else:
+                try:
+                    self.left.resolveExternalConstant(name, value)
+                except AttributeError:
+                    pass
+            newValues.append(newValue)
+
+        self.left = newValues[0]
+        self.right = newValues[1]
+
 
 class ExpressionValue(BinaryExpressionValue):
     """
@@ -306,6 +341,16 @@ class NegatedValue(Value):
 
     def replaceVariableReferences(self, varName, variable):
         self.value.replaceVariableReferences(varName, variable)
+
+    def resolveExternalConstant(self, name, value):
+        if isinstance(self.value, ExternalConstant):
+            if self.value.name == name:
+                self.value = value
+        else:
+            try:
+                self.value.resolveExternalConstant(name, value)
+            except AttributeError:
+                pass
 
 
 class LogicalExpressionValue(BinaryExpressionValue):

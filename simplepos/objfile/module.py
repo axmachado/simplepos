@@ -55,6 +55,8 @@ class Module(CallableBlock):
         self.objFile = objFile
         self.functions = {}
         self.externalFunctions = {}
+        self.constants = {}
+        self.externalConstants = {}
 
     def printStats(self):
         print("Module name:", self.name)
@@ -120,10 +122,23 @@ class Module(CallableBlock):
 
         self.functions[fname] = function
 
+    def addExternalConstant(self, name, value):
+        self.externalConstants[name] = value
+
+    def addLocalConstant(self, name, value):
+        self.constants[name] = value
+
     def replaceVariableReferences(self, varName, variable):
         super(Module, self).replaceVariableReferences(varName, variable)
         for function in self.functions.values():
             function.replaceGlobalVariableReferences(varName, variable)
+
+    def resolveExternalConstant(self, name, value):
+        if name in self.externalConstants:
+            super(Module, self).resolveExternalConstant(name, value)
+            for function in self.functions.values():
+                function.resolveExternalConstant(name, value)
+            del self.externalConstants[name]
 
     def __str__(self):
         partial = super(Module, self).__str__()

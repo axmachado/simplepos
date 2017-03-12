@@ -142,7 +142,10 @@ class POSXMLCode(object):
 
     def procValue(self, value):
         " processes a value and generate the intermediate code to compute it "
+        from ..linker.linkedmodule import LinkerException
         if isinstance(value, typedefs.Constant):
+            if isinstance(value, typedefs.ExternalConstant):
+                raise LinkerException("Unresolved external constant " + value.name)
             return str(value)
         elif isinstance(value, typedefs.VarValue):
             return '$(%s)' % str(value.variable.name)

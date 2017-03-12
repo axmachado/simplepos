@@ -58,6 +58,7 @@ constdef_item
     ;
 constdef
     : CONST constdef_item (COMMA constdef_item)* SEMICOLOM
+    | EXTERN CONST typename ID (COMMA ID)* SEMICOLOM
     ;
 typename
     : INT
@@ -172,6 +173,7 @@ forstm
 MODULE: 'module';
 GLOBAL: 'global';
 CONST: 'const';
+EXTERN: 'extern';
 INT: 'int';
 STRING: 'string';
 VOID: 'void';

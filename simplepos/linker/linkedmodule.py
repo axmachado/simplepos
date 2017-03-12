@@ -49,6 +49,7 @@ class LinkedModule(object):
         self.unresolvedFunctions = []
         self.linkedModules = []
         self.linkedFunctions = {}
+        self.definedConstants = {}
         self.finalName = None
         self.callGraph = None
 
@@ -84,6 +85,15 @@ class LinkedModule(object):
             self.functions.append(function)
         for function in module.externalFunctions.values():
             self.unresolvedFunctions.append(function)
+
+    def loadAllConstants(self, module):
+        for name, constant in module.constants.items():
+            if name in self.definedConstants:
+                existingConstant = self.definedConstants[name]
+                if existingConstant.value != constant.value:
+                    raise LinkerException("Redefined constant " + name)
+            else:
+                self.definedConstants[name] = constant
 
     def checkDuplicateFunctions(self):
         "Check duplicate function names"
@@ -129,6 +139,13 @@ class LinkedModule(object):
         for i in self.unresolvedFunctions:
             if i.name not in self.linkedFunctions:
                 raise LinkerException("Undefined function %s" % i)
+
+        for name,constant in self.definedConstants.items():
+            for statement in self.mainModule.statements:
+                statement.resolveExternalConstant(name, constant)
+
+            for function in self.linkedFunctions.values():
+                function.resolveExternalConstant(name, constant)
 
     def _buildCallGraph(self, callGraph, visited):
         if callGraph.name == '__main__':
@@ -210,6 +227,7 @@ class LinkedModule(object):
         for module in self.linkedModules:
             self.loadAllGlobals(module)
             self.loadAllFunctions(module)
+            self.loadAllConstants(module)
             if module == self.mainModule:
                 # copy the statements to avoid modifying the module
                 # during the optimization process
