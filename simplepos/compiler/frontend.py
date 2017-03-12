@@ -91,7 +91,7 @@ class Compiler(object):
         if not self.quiet:
             print("SimplePOS Compiler")
             print("Compiling", self.inputFile, "to", self.outputFile)
-        inputFile = antlr4.FileStream(self.inputFile)
+        inputFile = antlr4.FileStream(self.inputFile, encoding="utf-8")
         lexer = SimplePOSLexer(inputFile)
         stream = antlr4.CommonTokenStream(lexer)
         parser = SimplePOSParser(stream)
