@@ -48,7 +48,7 @@ class Linker(object):
         self.inputFiles = args
         if not self.outputFile:
             posExt = self.inputFiles[0].rfind('.')
-            self.outputFile = self.inputFiles[0][0:posExt] + '.posxml'
+            self.outputFile = self.inputFiles[0][0:posExt] + '.xml'
 
     @staticmethod
     def help():

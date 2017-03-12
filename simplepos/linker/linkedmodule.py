@@ -25,6 +25,7 @@
 
 from ..objfile.typedefs import (INT, VOID, Variable, Assignment,
                                 IntConstant, StringConstant)
+from ..objfile.functions import BuiltinFunction
 from ..codegen import POSXMLCode
 from .callgraph import CallGraph
 
@@ -111,13 +112,14 @@ class LinkedModule(object):
             except KeyError:
                 if fname in self.allFunctions:
                     theFunction = self.allFunctions[fname]
+                    if theFunction.returnType != VOID:
+                        returnVarName = "%s_return" % theFunction.name
+                        returnVar = Variable(returnVarName,
+                                             theFunction.returnType)
+                        self.globalVars[returnVarName] = returnVar
                 else:
                     raise LinkerException("Undefined function: %s" % fname)
             self.linkedFunctions[fname] = theFunction
-            if theFunction.returnType != VOID:
-                returnVarName = "%s_return" % theFunction.name
-                returnVar = Variable(returnVarName, theFunction.returnType)
-                self.globalVars[returnVarName] = returnVar
 
     def resolveUnresolved(self):
         """
@@ -236,5 +238,6 @@ class LinkedModule(object):
         for stm in self.mainModule.statements:
             gen.statement(stm)
         for function in self.linkedFunctions.values():
-            gen.function(function)
+            if not isinstance(function, BuiltinFunction):
+                gen.function(function)
         gen.generate(self.finalName)

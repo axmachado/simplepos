@@ -50,6 +50,15 @@ class SimplePOSListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SimplePOSParser#constblock.
+    def enterConstblock(self, ctx:SimplePOSParser.ConstblockContext):
+        pass
+
+    # Exit a parse tree produced by SimplePOSParser#constblock.
+    def exitConstblock(self, ctx:SimplePOSParser.ConstblockContext):
+        pass
+
+
     # Enter a parse tree produced by SimplePOSParser#vardefblock.
     def enterVardefblock(self, ctx:SimplePOSParser.VardefblockContext):
         pass
@@ -68,12 +77,39 @@ class SimplePOSListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SimplePOSParser#vardef_item.
+    def enterVardef_item(self, ctx:SimplePOSParser.Vardef_itemContext):
+        pass
+
+    # Exit a parse tree produced by SimplePOSParser#vardef_item.
+    def exitVardef_item(self, ctx:SimplePOSParser.Vardef_itemContext):
+        pass
+
+
     # Enter a parse tree produced by SimplePOSParser#vardef.
     def enterVardef(self, ctx:SimplePOSParser.VardefContext):
         pass
 
     # Exit a parse tree produced by SimplePOSParser#vardef.
     def exitVardef(self, ctx:SimplePOSParser.VardefContext):
+        pass
+
+
+    # Enter a parse tree produced by SimplePOSParser#constdef_item.
+    def enterConstdef_item(self, ctx:SimplePOSParser.Constdef_itemContext):
+        pass
+
+    # Exit a parse tree produced by SimplePOSParser#constdef_item.
+    def exitConstdef_item(self, ctx:SimplePOSParser.Constdef_itemContext):
+        pass
+
+
+    # Enter a parse tree produced by SimplePOSParser#constdef.
+    def enterConstdef(self, ctx:SimplePOSParser.ConstdefContext):
+        pass
+
+    # Exit a parse tree produced by SimplePOSParser#constdef.
+    def exitConstdef(self, ctx:SimplePOSParser.ConstdefContext):
         pass
 
 

@@ -85,6 +85,8 @@ class CompilerListener(SimplePOSListener):
         self.callStack = []
         # current function when compiling functions
         self.currentFunction = None
+        # constant definitions
+        self.constants = {}
 
     def _enterScope(self, scope):
         if scope != self.scope:
@@ -137,14 +139,30 @@ class CompilerListener(SimplePOSListener):
 
     # Enter a parse tree produced by SimplePOSParser#vardef.
     def enterVardef(self, ctx: SimplePOSParser.VardefContext):
-        varNames = ctx.ID()
-        for varName in varNames:
+        self.valueStack.append ([])
+
+    # Exit a parse tree produced by SimplePOSParser#vardef.
+    def exitVardef(self, ctx: SimplePOSParser.VardefContext):
+        definedVars = self.valueStack.pop()
+        for (varName, value) in definedVars:
             try:
-                self.scope.addVariable(varName.getText(),
+                self.scope.addVariable(varName,
                                        typeFromTypename(ctx.typename()))
+                variable = self.scope.findVariable(varName)
+                if value:
+                    statement = Assignment(variable, value)
+                    self.scope.addStatement(statement)
             except DuplicateVariableException as ex:
                 self._printError(ctx.start.line, ctx.start.column, str(ex))
                 sys.exit(1)
+
+    # Exit a parse tree produced by SimplePOSParser#vardef_item.
+    def exitVardef_item(self, ctx: SimplePOSParser.Vardef_itemContext):
+        varName = ctx.ID().getText()
+        value = None
+        if ctx.ASSIGN():
+            value = self.valueStack.pop()
+        self.valueStack[-1].append ( (varName,value) )
 
     # Exit a parse tree produced by SimplePOSParser#value.
     def exitValue(self, ctx: SimplePOSParser.ValueContext):
@@ -167,14 +185,17 @@ class CompilerListener(SimplePOSListener):
         elif ctx.ID():
             # we have an ID - it's a variable
             varName = ctx.ID().getText()
-            try:
-                var = self.scope.findVariable(varName)
-            except KeyError:
-                self._printError(ctx.start.line, ctx.start.column,
-                                 "undefined variable %s" % varName)
-                # this error aborts the compiler
-                sys.exit(1)
-            value = VarValue(var)
+            if varName in self.constants:
+                value = self.constants[varName]
+            else:
+                try:
+                    var = self.scope.findVariable(varName)
+                except KeyError:
+                    self._printError(ctx.start.line, ctx.start.column,
+                                     "undefined variable %s" % varName)
+                    # this error aborts the compiler
+                    sys.exit(1)
+                value = VarValue(var)
         elif ctx.intvalue():
             # we have an integer constant
             intVal = int(ctx.intvalue().getText())
@@ -358,3 +379,13 @@ class CompilerListener(SimplePOSListener):
         stm.increment = increment
         stm.block = block
         self.scope.addStatement(stm)
+
+    # Exit a parse tree produced by SimplePOSParser#constdef_item.
+    def exitConstdef_item(self, ctx:SimplePOSParser.Constdef_itemContext):
+        constName = ctx.ID().getText()
+        if ctx.intvalue():
+            constValue = IntConstant(ctx.intvalue().getText())
+        else:
+            constValue = StringConstant(ctx.STRVALUE().getText()[1:-1])
+        self.constants[constName] = constValue
+

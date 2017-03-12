@@ -31,10 +31,13 @@ options {
 }
 
 sourcefile
-    : moduledef? vardefblock? stmlist EOF
+    : moduledef? constblock? vardefblock? stmlist EOF
     ;
 moduledef
     : MODULE ID (LPAR arglist? RPAR)? SEMICOLOM
+    ;
+constblock
+    : constdef+
     ;
 vardefblock
     : vardef+
@@ -43,8 +46,18 @@ vardefblock
 functiondef
     : (typename | VOID) ID LPAR arglist? RPAR LCURL vardefblock? stmlist RCURL
     ;
+vardef_item
+    : ID (ASSIGN value)?
+    ;
 vardef
-    : GLOBAL? typename ID (COMMA ID)* SEMICOLOM
+    : GLOBAL? typename vardef_item (COMMA vardef_item)* SEMICOLOM
+    ;
+constdef_item
+    : ID ASSIGN STRVALUE
+    | ID ASSIGN intvalue
+    ;
+constdef
+    : CONST constdef_item (COMMA constdef_item)* SEMICOLOM
     ;
 typename
     : INT
@@ -158,6 +171,7 @@ forstm
 /* keywords */
 MODULE: 'module';
 GLOBAL: 'global';
+CONST: 'const';
 INT: 'int';
 STRING: 'string';
 VOID: 'void';
