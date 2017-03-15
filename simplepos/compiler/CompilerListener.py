@@ -48,8 +48,16 @@ from ..objfile.typedefs import (INT, STRING, VOID, UNDEF,
 
 def typeFromTypename(ctx: SimplePOSParser.TypenameContext):
     "Get the type from the input token"
-    # we have only to real types: int and string
-    return INT if ctx.getText() == 'int' else STRING
+    # we have only to real types: int, string and void
+    text = ctx.getText();
+    if text == 'int':
+        return INT
+    elif text == 'string':
+        return STRING
+    elif text == 'void':
+        return VOID
+    else:
+        return UNDEF;
 
 
 def firstNonNull(itemList):
@@ -118,7 +126,7 @@ class CompilerListener(SimplePOSListener):
     # Enter a parse tree produced by SimplePOSParser#functiondef.
     def enterFunctiondef(self, ctx: SimplePOSParser.FunctiondefContext):
         if ctx.typename():
-            returnType = ctx.typename().getText()
+            returnType = typeFromTypename(ctx.typename());
         else:
             returnType = VOID
         theFunction = Function(returnType)
