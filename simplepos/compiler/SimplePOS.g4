@@ -219,7 +219,9 @@ BLOCK_COMMENT
     ;
 ID: [a-zA-Z_][a-zA-Z_0-9]* ;
 DIGIT: [0-9]+ ;
-STRVALUE: '"' (~[\r\n"] | '\"')* '"' ;
+STRVALUE
+    : '"' (~[\r\n"])*? '"'
+    ;
 SINGLELINE_COMMENT: '//' (~[\r\n]*) [\r\n] -> skip;
 MULTILINE_COMMENT: '/*' (.*?) '*/' -> skip;
 WS : [ \t\r\n]+ -> skip ;
