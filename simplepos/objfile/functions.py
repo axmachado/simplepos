@@ -71,6 +71,9 @@ class Function(CallableBlock):
                 argName = self.argumentList[i]
                 argument = self.arguments[argName]
                 value = actualArgs[i]
+                if value.type_ == UNDEF:
+                    # functionReturnValue of an undefined function.
+                    value.type_ = argument.type_
                 if argument.type_ != value.type_:
                     invalid.append((argument.name, argument.type_, value.type_))
         if len(invalid) > 0:

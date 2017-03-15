@@ -677,7 +677,7 @@
 ### strpad
   Pads a string to the desired size.
     
-    string strpad(string character, int length, int align,
+    string strpad(string character, int length, string align,
                   string origin)
                   
   POSXML **string.pad** call:

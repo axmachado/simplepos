@@ -95,7 +95,7 @@ def initApiFunctions():
     functions.append(fcn)
 
     fcn = ApiFunction(STRING, "strpad", ("character", STRING, False),
-                      ("length", INT, False), ("align", INT, False),
+                      ("length", INT, False), ("align", STRING, False),
                       ("origin", STRING, False), tagName="string.pad",
                       returnAttribute="destination")
     functions.append(fcn)
