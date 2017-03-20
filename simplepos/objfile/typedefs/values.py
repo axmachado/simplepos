@@ -79,6 +79,13 @@ class Value(object):
         """
         placeholder to be override by subclass
         """
+        pass
+
+    def replaceLinkedFunction(self, function):
+        """
+        placeholder to be override
+        """
+        pass
 
 class Constant(Value):
     """
@@ -199,6 +206,10 @@ class FunctionReturnValue(Value):
     def __str__(self):
         return str(self.functionCall)
 
+    def replaceLinkedFunction(self, function):
+        if self.functionCall:
+            self.functionCall.replaceLinkedFunction(function)
+
     def replaceVariableReferences(self, varName, variable):
         if self.functionCall:
             self.functionCall.replaceVariableReferences(varName, variable)
@@ -299,6 +310,10 @@ class BinaryExpressionValue(Value):
         self.left = newValues[0]
         self.right = newValues[1]
 
+    def replaceLinkedFunction(self, function):
+        self.left.replaceLinkedFunction(function)
+        self.right.replaceLinkedFunction(function)
+
 
 class ExpressionValue(BinaryExpressionValue):
     """
@@ -352,6 +367,8 @@ class NegatedValue(Value):
             except AttributeError:
                 pass
 
+    def replaceLinkedFunction(self, function):
+        self.value.replaceLinkedFunction(function)
 
 class LogicalExpressionValue(BinaryExpressionValue):
     "Logical expression A (AND|OR) B"

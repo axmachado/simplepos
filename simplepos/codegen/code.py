@@ -32,7 +32,7 @@ from .functions import (FunctionCall, MathematicalOperation,
 from .scope import POSXMLCodeScope
 
 # pylint: disable=C0103
-logger = logging.getLogger("link")
+logger = logging.getLogger("codegen")
 
 
 class POSXMLCode(object):
@@ -67,7 +67,6 @@ class POSXMLCode(object):
         scope = POSXMLCodeScope(self)
         scope.parentScope = self.currentScope()
         self.scopes.append(scope)
-        logger.debug("%s entering scope: %d", self.name, len(self.scopes))
         return scope
 
     def currentScope(self):
@@ -86,7 +85,6 @@ class POSXMLCode(object):
         if scopeToExit.codeBlock == current.codeBlock:
             for var in scopeToExit.userVariables:
                 current.userVariables.add(var)
-        logger.debug("%s exiting scope: %d", self.name, len(self.scopes))
         return scopeToExit
 
     def function(self, f):
@@ -107,6 +105,7 @@ class POSXMLCode(object):
 
     def functionCall(self, callInstance, returnVariableName):
         " generate code for a function call "
+        logger.debug ("      generating code for %s", callInstance)
         argValues = [self.procValue(i) for i in callInstance.arguments]
         stmgen = FunctionCall(callInstance,
                               self.findLinkedFunction(callInstance.name),
@@ -163,6 +162,7 @@ class POSXMLCode(object):
         self.enterScope()
         stmgen = Assignment(stm.variable.type_, stm.variable.name,
                             self.procValue(v))
+        logger.debug ("      assignment: %s = '%s'", stm.variable, stmgen.value)
         self.addStatements(stmgen)
         # clean up the temporary variables created here.
         self.exitScope()
@@ -172,6 +172,9 @@ class POSXMLCode(object):
         self.enterScope()
         returnVarName = '%s_return' % self.name
         stmgen = Assignment(v.type_, returnVarName, self.procValue(v))
+        logger.debug ("      assignment: %s %s = '%s'",
+                      v.type_, returnVarName, stmgen.value)
+
         self.addStatements(stmgen)
         self.exitScope()
 

@@ -58,6 +58,10 @@ class Statement(object):
     def resolveExternalConstant(self, constantName, constantValue):
         pass
 
+    def replaceLinkedFunction(self, function):
+        # placeholder to be overwritten
+        pass
+
 class BreakStatement(Statement):
     "break statement"
     def __init__(self):
@@ -136,6 +140,8 @@ class ReturnStatement(Statement):
             if self.value.name == constantName:
                 self.value = constantValue
 
+    def replaceLinkedFunction(self, function):
+        self.value.replaceLinkedFunction(function)
 
 class Assignment(Statement):
     """
@@ -179,7 +185,15 @@ class Assignment(Statement):
         if isinstance(self.value, ExternalConstant):
             if self.value.name == constantName:
                 self.value = constantValue
+        else:
+            try:
+                self.value.resolveExternalConstant(constantName, constantValue)
+            except AttributeError:
+                # não tem o método, ignorar
+                pass
 
+    def replaceLinkedFunction(self, function):
+        self.value.replaceLinkedFunction(function)
 
 
 class FunctionCall(Statement):
@@ -253,6 +267,12 @@ class FunctionCall(Statement):
                 except AttributeError:
                     pass
 
+    def replaceLinkedFunction(self, function):
+        if self.name == function.name:
+            self.returnType = function.returnType
+
+        for argument in self.arguments:
+            argument.replaceLinkedFunction(function)
 
 class IfThenElse(Statement):
     """
@@ -346,11 +366,16 @@ class IfThenElse(Statement):
     def resolveExternalConstant(self, constantName, constantValue):
         self.condition.resolveExternalConstant(constantName, constantValue)
         if self.ifBlock:
-            self.ifBlock.resolveExternalConstant(self, constantName,
-                                                 constantValue)
+            self.ifBlock.resolveExternalConstant(constantName, constantValue)
         if self.elseBlock:
-            self.elseBlock.replaceExternalConstant(self, constantName,
-                                                   constantValue)
+            self.elseBlock.replaceExternalConstant(constantName, constantValue)
+
+    def replaceLinkedFunction(self, function):
+        self.condition.replaceLinkedFunction(function)
+        if self.ifBlock:
+            self.ifBlock.replaceLinkedFunction(function)
+        if self.elseBlock:
+            self.elseBlock.replaceLinkedFunction(function)
 
     def __str__(self):
         return self.prefixedPrint("")
@@ -402,6 +427,10 @@ class WhileStatement(Statement):
         self.condition.resolveExternalConstant(constantName, constantValue)
         self.block.resolveExternalConstant(constantName, constantValue)
 
+    def replaceLinkedFunction(self, function):
+        self.condition.replaceLinkedFunction(function)
+        self.block.replaceLinkedFunction(function)
+
 class ForStatement(WhileStatement):
     """
     for - repetition
@@ -450,3 +479,10 @@ class ForStatement(WhileStatement):
                                                         constantValue)
         if self.increment:
             self.increment.resolveEsternalConstant(constantName, constantValue)
+
+    def replaceLinkedFunction(self, function):
+        super(ForStatement,self).replaceLinkedFunction(function)
+        if self.initialization:
+            self.initialization.replaceLinkedFunction(function)
+        if self.increment:
+            self.increment.replaceLinkedFunction(function)

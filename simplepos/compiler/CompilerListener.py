@@ -27,7 +27,7 @@
 """
 
 import sys
-
+import logging
 from .SimplePOSListener import SimplePOSListener, SimplePOSParser
 from ..objfile import (UndefinedFunction, InvalidCallException, Module,
                        DuplicateVariableException, BlockStatement,
@@ -42,6 +42,8 @@ from ..objfile.typedefs import (INT, STRING, VOID, UNDEF,
                                 BreakStatement, IncDecStatement, IfThenElse,
                                 WhileStatement, ForStatement, ReturnStatement)
 
+
+logger = logging.getLogger("compiler")
 
 # Utility functions:
 
@@ -100,11 +102,13 @@ class CompilerListener(SimplePOSListener):
 
     def _enterScope(self, scope):
         if scope != self.scope:
+            logger.debug ("Entering scope")
             self.scopeStack.append(self.scope)
             scope.parentScope = self.scope
             self.scope = scope
 
     def _exitScope(self):
+        logger.debug ("Exiting scope")
         if len(self.scopeStack) == 0:
             self.scope = self.module
         else:

@@ -28,5 +28,6 @@ import sys
 from simplepos import Compiler
 
 if __name__ == '__main__':
+
     compiler = Compiler (*sys.argv)
     compiler.run()

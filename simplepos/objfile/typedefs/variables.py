@@ -71,8 +71,9 @@ def variableSetter(setter):
     "Decorator to validate a Variable in a setter"
     def theSetter(self, value):
         "the real setter"
-        if value and not isinstance(value, Variable):
-            raise ValueError("The value must be an instance of Value")
+        if value and not (isinstance(value, Variable)
+                          or isinstance(value, Argument)):
+            raise ValueError("The value must be an instance of Variable")
         setter(self, value)
     return theSetter
 

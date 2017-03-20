@@ -83,6 +83,12 @@ class Function(CallableBlock):
         " For debugging and logging purposes "
         return "%s %s" % (self.returnType, super(Function, self).__str__())
 
+    def callFunction(self, name):
+        # will not call superclass because it
+        # the calls must not be propagated to the
+        # module unless the function is actually called.
+        self.calledFunctions.add(name)
+
 class BuiltinFunction(Function):
     " Function build into the compiler "
 

@@ -88,10 +88,10 @@ class SimpleComparison(Conditional):
     # pylint: disable=C0103
     # those are really constants, but pylint thinks they are class attributes
     LT = 'lessthan'
-    GT = 'greatherthan'
+    GT = 'greaterthan'
     EQ = 'equalto'
     NE = 'notequalto'
-    GE = 'greatherthanorequalto'
+    GE = 'greaterthanorequalto'
     LE = 'lessthanorequalto'
 
     def __init__(self, left, op, right):

@@ -102,7 +102,7 @@ def initApiFunctions():
 
     fcn = ApiFunction(STRING, "dbread", ("filename", STRING, False),
                       ("key", STRING, False), tagName="readfile",
-                      returAttribute="variabledestination")
+                      returnAttribute="variabledestination")
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "dbread_index",
@@ -111,7 +111,7 @@ def initApiFunctions():
                       ("variablekey", STRING, True),
                       ("variablevalue", STRING, True),
                       tagName="readfilebyindex",
-                      returAttribute="variablereturn")
+                      returnAttribute="variablereturn")
     functions.append(fcn)
 
     fcn = VoidApiFunction("dbupdate", ("filename", STRING, False),

@@ -23,12 +23,14 @@
     Linked module data structure
 """
 
+import logging
 from ..objfile.typedefs import (INT, VOID, Variable, Assignment,
                                 IntConstant, StringConstant)
 from ..objfile.functions import BuiltinFunction
 from ..codegen import POSXMLCode
 from .callgraph import CallGraph
 
+logger = logging.getLogger("linker")
 
 class LinkerException(Exception):
     "All link errors"
@@ -62,16 +64,22 @@ class LinkedModule(object):
                        (module.name, self.mainModule.name)
                 raise LinkerException(msg)
             else:
+                logger.info ("Defining %s as main module", module.name)
                 self.mainModule = module
                 if not self.finalName:
                     self.finalName = module.name + ".posxml"
+        logger.debug ("adding module to list")
         self.linkedModules.append(module)
 
     def loadAllGlobals(self, module):
         "Load all module variables as globals"
+        logger.info ("Loading global variables")
         for var in module.variables.values():
+            logger.debug ("   defining %s", var)
             if var.name in self.globalVars:
                 existingVar = self.globalVars[var.name]
+                logger.debug ("        already exists as %s. "
+                              "Replacing references", existingVar)
                 if existingVar.type_ != var.type_:
                     raise LinkerException("Global variable with conflicting "
                                           "type in module" + module.name)
@@ -81,22 +89,28 @@ class LinkedModule(object):
 
     def loadAllFunctions(self, module):
         "Load all module functions"
+        logger.info ("Loading functions")
         for function in module.functions.values():
+            logger.debug ("   %s", function.name)
             self.functions.append(function)
         for function in module.externalFunctions.values():
+            logger.debug ("   reference to %s", function.name)
             self.unresolvedFunctions.append(function)
 
     def loadAllConstants(self, module):
+        logger.info ("Loading constants")
         for name, constant in module.constants.items():
             if name in self.definedConstants:
                 existingConstant = self.definedConstants[name]
                 if existingConstant.value != constant.value:
                     raise LinkerException("Redefined constant " + name)
             else:
+                logger.debug ("    defining %s as %s", name, constant)
                 self.definedConstants[name] = constant
 
     def checkDuplicateFunctions(self):
         "Check duplicate function names"
+        logger.debug ("Checking for duplicate functions")
         functionNames = [f.name for f in self.functions]
         visited = set()
         dups = set()
@@ -113,20 +127,28 @@ class LinkedModule(object):
 
     def findLinkedFunctions(self):
         "Find all functions that must be linked"
+        logger.info ("Finding functions that will be linked")
         from simplepos.api import findApiFunction
         if not self.mainModule:
             raise LinkerException("Undefined main module")
-        for fname in self.mainModule.calledFunctions:
+        allCalled = [ x for x in self.mainModule.calledFunctions ]
+        while len(allCalled) > 0:
+            fname = allCalled.pop()
+            if fname in self.linkedFunctions:
+                continue
             try:
                 theFunction = findApiFunction(fname)
+                logger.debug ("    API function %s", fname)
             except KeyError:
                 if fname in self.allFunctions:
+                    logger.debug ("    User defined %s", fname)
                     theFunction = self.allFunctions[fname]
                     if theFunction.returnType != VOID:
                         returnVarName = "%s_return" % theFunction.name
                         returnVar = Variable(returnVarName,
                                              theFunction.returnType)
                         self.globalVars[returnVarName] = returnVar
+                    allCalled.extend(theFunction.calledFunctions)
                 else:
                     raise LinkerException("Undefined function: %s" % fname)
             self.linkedFunctions[fname] = theFunction
@@ -136,11 +158,26 @@ class LinkedModule(object):
         Check if all unresolved functions on individual modules where linked
         together into the final module
         """
+        logger.info ("Resolving function references")
         for i in self.unresolvedFunctions:
+            logger.debug ("    %s", i.name)
             if i.name not in self.linkedFunctions:
                 raise LinkerException("Undefined function %s" % i)
 
+        for function in self.linkedFunctions.values():
+            if isinstance(function, BuiltinFunction):
+                continue
+            for stm in self.statements:
+                stm.replaceLinkedFunction(function)
+
+            for lfunction in self.linkedFunctions.values():
+                if isinstance(lfunction, BuiltinFunction):
+                    continue
+                lfunction.replaceLinkedFunction(function)
+
+        logger.info ("Resolving constant references")
         for name,constant in self.definedConstants.items():
+            logger.debug ("    %s = %s", name, constant)
             for statement in self.mainModule.statements:
                 statement.resolveExternalConstant(name, constant)
 
@@ -215,6 +252,7 @@ class LinkedModule(object):
         """
         Rename the variables to avoid conflicts within funcion calls
         """
+        logger.info ("Renaming variables to avoid conflicts")
         self.resolveLocalGlobalOveralp()
         self.callGraph = CallGraph('__main__')
         self._buildCallGraph(self.callGraph, [])
@@ -224,6 +262,7 @@ class LinkedModule(object):
         """
         execute the linking process
         """
+        otherModulesStatements = []
         for module in self.linkedModules:
             self.loadAllGlobals(module)
             self.loadAllFunctions(module)
@@ -232,6 +271,11 @@ class LinkedModule(object):
                 # copy the statements to avoid modifying the module
                 # during the optimization process
                 self.statements = [stm for stm in module.statements]
+            else:
+                otherModulesStatements.extend(module.statements)
+                for function in module.calledFunctions:
+                    self.mainModule.callFunction(function)
+        self.statements.extend(otherModulesStatements)
 
         self.checkDuplicateFunctions()
         self.findLinkedFunctions()
@@ -242,20 +286,34 @@ class LinkedModule(object):
         """
         call the code generator in order to produce the output file
         """
+        logger = logging.getLogger("codegen")
+        logger.info ("Starting code generation")
         gen = POSXMLCode(name='__main__', linkedFunctions=self.linkedFunctions)
         # initialization of global variables
-        for variable in self.globalVars.values():
+        allVars = {var.name: var for var in self.globalVars.values()}
+        for functionName in self.linkedFunctions:
+            function = self.linkedFunctions[functionName]
+            if not isinstance(function, BuiltinFunction):
+                allVars.update({arg.name: arg for arg in function.arguments.values()})
+
+        logger.info ("Initialization of used variables")
+        for variable in allVars.values():
             if variable.type_ == INT:
                 value = IntConstant(0)
             else:
                 value = StringConstant("")
-
             assign = Assignment(variable, value)
+            logger.debug ("   %s", assign)
             gen.statement(assign)
 
+        logger.info("__main__ statements")
         for stm in self.mainModule.statements:
+            logger.debug ("    %s", stm)
             gen.statement(stm)
+
+        logger.info ("functions")
         for function in self.linkedFunctions.values():
             if not isinstance(function, BuiltinFunction):
+                logger.debug ("    %s", function.name)
                 gen.function(function)
         gen.generate(self.finalName)

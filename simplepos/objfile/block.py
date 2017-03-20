@@ -97,6 +97,10 @@ class NameScope(object):
         for stm in self.statements:
             stm.resolveExternalConstant(name, value)
 
+    def replaceLinkedFunction(self, function):
+        for stm in self.statements:
+            stm.replaceLinkedFunction(function)
+
     def _getLocal(self, varName):
         return self.variables[varName]
 

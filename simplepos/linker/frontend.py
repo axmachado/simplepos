@@ -26,6 +26,7 @@
 import getopt
 import sys
 import pickle
+import logging
 
 from .linkedmodule import LinkedModule, LinkerException
 
@@ -37,12 +38,27 @@ class Linker(object):
     def __init__(self, *cmdline):
         self.inputFiles = None
         self.outputFile = None
-        optlist, args = getopt.getopt(cmdline[1:], 'o:h', [ 'help'])
+        self.logLevel = logging.INFO
+        optlist, args = getopt.getopt(cmdline[1:], 'o:hv:', [ 'help', 'verbose:'])
         for opt, param in optlist:
             if opt == '-h':
                 self.help()
             elif opt == '-o':
                 self.outputFile = param
+            elif opt == '-v' or opt == '--verbose':
+                if param == '0':
+                    self.quiet = True
+                elif param == '1':
+                    self.logLevel = logging.WARN
+                elif param == '3':
+                    self.logLevel = logging.DEBUG
+
+        logging.basicConfig(
+            format='%(asctime)s %(levelname)s %(name)s : %(message)s',
+            level=self.logLevel)
+
+        logger = logging.getLogger("linker")
+        logger.info("Starting SPL")
         if len(args) == 0:
             self.help()
         self.inputFiles = args
@@ -60,6 +76,12 @@ class Linker(object):
         use spl [opcoes] arquivo1 arquivo2 ...
 
         opcoes:
+           -v level | --verbose level
+               Sets verbosity level:
+               0: quiet (only errors)
+               1: warnings
+               2: info (default)
+               3: debug
            -o arquivo
                Configura o nome do arquivo de saída. Se omitido, o
                nome no primeiro arquivo é utilizado, com a extensão .posxml
@@ -85,4 +107,4 @@ class Linker(object):
             linkModule.genCode()
         except LinkerException as ex:
             print("Erro de ligação: ", ex)
-            sys.exit(0)
+            sys.exit(255)

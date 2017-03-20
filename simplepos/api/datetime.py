@@ -30,7 +30,7 @@ def initApiFunctions():
 
     fcn = ApiFunction(STRING, "getdatetime",
                       ("format", STRING, False),
-                      returnAttribute="variablereturn")
+                      returnAttribute="variabledestination")
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "time_operation",
@@ -40,7 +40,7 @@ def initApiFunctions():
                       ("type", STRING, False),
                       ("value", INT, False),
                       tagName="time.calculate",
-                      returnAttribute="variablereturn")
+                      returnAttribute="variabledestination")
     functions.append(fcn)
 
     return functions
