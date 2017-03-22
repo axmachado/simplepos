@@ -217,8 +217,13 @@ class CompilerListener(SimplePOSListener):
             value = IntConstant(intVal)
         elif ctx.functioncall():
             # we have a function call
+            from ..objfile.internals import findInlineFunction
             fcall = self.callStack.pop()
-            value = FunctionReturnValue(fcall)
+            inline = findInlineFunction(fcall.name)
+            if inline:
+                value = inline.callValue(self.scope, *fcall.arguments)
+            else:
+                value = FunctionReturnValue(fcall)
 
         if value:
             self.valueStack.append(value)
@@ -315,8 +320,11 @@ class CompilerListener(SimplePOSListener):
 
     # Exit a parse tree produced by SimplePOSParser#functioncall.
     def exitFunctioncall(self, ctx: SimplePOSParser.FunctioncallContext):
+        from ..objfile.internals import findInlineFunction, InlineFunction
         functionName = ctx.ID().getText()
-        function = self.module.findFunction(functionName)
+        function = findInlineFunction(functionName)
+        if not function:
+            function = self.module.findFunction(functionName)
         args = self.valueStack
         self.valueStack = self.callStack.pop()
         if isinstance(function, UndefinedFunction):
@@ -329,7 +337,8 @@ class CompilerListener(SimplePOSListener):
                 sys.exit(1)
         callInstance = FunctionCall(function, *args)
         self.callStack.append(callInstance)
-        self.scope.callFunction(functionName)
+        if not isinstance(function, InlineFunction):
+            self.scope.callFunction(functionName)
 
     # Exit a parse tree produced by SimplePOSParser#stmline.
     def exitStmline(self, ctx: SimplePOSParser.StmlineContext):

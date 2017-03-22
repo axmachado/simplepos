@@ -25,6 +25,8 @@
 
 import logging
 
+from django.contrib.gis.geos.prototypes.errcheck import last_arg_byref
+
 from ..objfile import typedefs
 from .variables import (Assignment, IncrementDecrement)
 from .functions import (FunctionCall, MathematicalOperation,
@@ -241,16 +243,17 @@ class POSXMLCode(object):
 
     def removeDuplicateAssignments(self):
         toRemove = []
-        lastVariable = None
+        lastAssignment = None
         for statement in self.statements:
             if isinstance(statement,Assignment):
-                if statement.variable == lastVariable:
-                    logger.debug ("Removing assignment to %s",
-                                  statement.variable)
-                    toRemove.append(statement)
-                lastVariable = statement.variable
+                if lastAssignment and \
+                                statement.variable == lastAssignment.variable:
+                    logger.debug ("Removing assignment %s = %s",
+                                  lastAssignment.variable, lastAssignment.value)
+                    toRemove.append(lastAssignment)
+                lastAssignment = statement
             else:
-                lastVariable = None
+                lastAssignment = None
         for statement in toRemove:
             self.statements.remove(statement)
 
