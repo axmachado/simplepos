@@ -36,17 +36,22 @@ class POSXMLWriter(object):
 
     def _header(self, output):
         "XML header"
-        output.write('<?xml version="1.0" encoding="utf-8"?>\n')
-        output.write('<!-- SimplePOSLanguage - generated for module %s -->\n' % \
-                     self.moduleName)
-        output.write('<posxml>\n')
+        # will not be generated because the POSXML IDE does not accept it.
+        if False:
+            output.write('<?xml version="1.0" encoding="utf-8"?>\n')
+            output.write('<!-- SimplePOSLanguage - generated for module %s -->\n' % \
+                         self.moduleName)
+            output.write('<posxml>\n')
+
 
     @staticmethod
     def _trailer(output):
+        "XML Trailer"
         # pylint: disable=R0201
         # it can be a function, but stays in the class for interface consistency
-        "XML Trailer"
-        output.write('</posxml>\n')
+        # will not be generated because the POSXML ide does not support it.
+        if False:
+            output.write('</posxml>\n')
 
     def write(self):
         "Write the code to a file"

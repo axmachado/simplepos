@@ -405,7 +405,7 @@ class IfThenElse(Statement):
         if self.ifBlock:
             self.ifBlock.resolveExternalConstant(constantName, constantValue)
         if self.elseBlock:
-            self.elseBlock.replaceExternalConstant(constantName, constantValue)
+            self.elseBlock.resolveExternalConstant(constantName, constantValue)
 
     def replaceLinkedFunction(self, function):
         self.condition.replaceLinkedFunction(function)
@@ -537,7 +537,7 @@ class ForStatement(WhileStatement):
             self.initialization.resolveExternalConstant(constantName,
                                                         constantValue)
         if self.increment:
-            self.increment.resolveEsternalConstant(constantName, constantValue)
+            self.increment.resolveExternalConstant(constantName, constantValue)
 
     def replaceLinkedFunction(self, function):
         super(ForStatement,self).replaceLinkedFunction(function)

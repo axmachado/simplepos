@@ -942,7 +942,7 @@
                           string isomsg, string &variableresponse)
                           
   POSXML **iso8583.transactmessage** call:
-  [https://docs/cloudwalk.io/en/posxml/commands/iso8583.transactmessage]                            
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.transactmessage]                            
 
 ### iso8583_analyze
   Parses the iso8583 message and initializes the global state of the
@@ -952,7 +952,7 @@
                          string &variablemessage)
                           
   POSXML **iso8583.analyzemessage** call:
-  [https://docs/cloudwalk.io/en/posxml/commands/iso8583.analyzemessage]
+  [https://docs.cloudwalk.io/en/posxml/commands/iso8583.analyzemessage]
                               
 ### iso8583_get_int
   Gets the value of an integer field from an iso8583 message.

@@ -110,7 +110,7 @@ class SimpleComparison(Conditional):
         elif op == '<=':
             self.operator = self.LE
         else:
-            raise CodeGenerationError('Invalid operator "' + op + '"')
+            raise CodeGenerationError('Invalid operator "%s"', op)
 
         self.originalOperator = self.operator
 
@@ -317,6 +317,10 @@ class ConditionalFactory(object):
             return ConstantConditional(value)
         elif isinstance(condition, typedefs.VarValue):
             return SingleVariableCondition('$(%s)' % condition.variable.name)
+        elif isinstance(condition, typedefs.FunctionReturnValue):
+            leftValue = condition
+            rightValue = typedefs.IntConstant(0)
+            return ValueComparison(leftValue, "!=", rightValue)
         elif isinstance(condition, typedefs.NegatedValue):
             cond = self.getConditional(condition.value)
             cond.negate()

@@ -32,7 +32,7 @@ def initApiFunctions():
                       returnAttribute="variablestatus")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "preconnect", returnAttrbute="variablestatus")
+    fcn = ApiFunction(INT, "preconnect", returnAttribute="variablestatus")
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "initmodem", returnAttribute="variablereturn",

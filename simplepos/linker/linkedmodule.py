@@ -162,7 +162,7 @@ class LinkedModule(object):
         for i in self.unresolvedFunctions:
             logger.debug ("    %s", i.name)
             if i.name not in self.linkedFunctions:
-                raise LinkerException("Undefined function %s" % i)
+                logger.info ("Undefined function %s referenced in some module." % i.name)
 
         for function in self.linkedFunctions.values():
             if isinstance(function, BuiltinFunction):

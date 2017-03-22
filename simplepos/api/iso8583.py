@@ -70,7 +70,7 @@ def initApiFunctions():
                       ("trailler", STRING, False),
                       ("isomsg", STRING, False),
                       ("variableresponse", STRING, True),
-                      tagnNme="iso8583.transactmessage",
+                      tagName="iso8583.transactmessage",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 
@@ -93,7 +93,7 @@ def initApiFunctions():
 
     fcn = ApiFunction(INT, "iso8583_get_string",
                       ("fieldnumber", INT, False),
-                      ("variablevalue", INT, True),
+                      ("variablevalue", STRING, True),
                       tagName="iso8583.getfield",
                       returnAttribute="variablereturn")
     fcn.addFixedAttribute("type", "string")
