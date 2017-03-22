@@ -11,7 +11,7 @@ The functions described here are generated directly by the compiler.
     
   Initializes a delimited string.
   
-    string delimited_insert(string delimiter, int length)
+    string delimited_init(string delimiter, int length)
     
    The delimiter and length parameters must be constants.
   
