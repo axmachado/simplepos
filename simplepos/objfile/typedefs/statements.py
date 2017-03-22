@@ -423,11 +423,11 @@ class IfThenElse(Statement):
                 return True
         return False
 
-    def processReturnStatement(self):
+    def processReturnStatement(self, insertBreak = False):
         if self.ifBlock:
-            self.ifBlock.processReturnStatement()
+            self.ifBlock.processReturnStatement(insertBreak)
         if self.elseBlock:
-            self.elseBlock.processReturnStatement()
+            self.elseBlock.processReturnStatement(insertBreak)
 
     def __str__(self):
         return self.prefixedPrint("")
@@ -486,9 +486,9 @@ class WhileStatement(Statement):
     def containsReturn(self):
         return self.block.containsReturn()
 
-    def processReturnStatement(self):
+    def processReturnStatement(self, insertBreak):
         if self.block:
-            self.block.processReturnStatement()
+            self.block.processReturnStatement(True)
 
 class ForStatement(WhileStatement):
     """

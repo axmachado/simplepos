@@ -10,6 +10,7 @@ display (1,1, inttostring(f1(x)));
 
 
 int f1(int x) {
+    int i;
     if (x < 1) {
         return x;
     }
@@ -25,5 +26,11 @@ int f1(int x) {
         x++;
         x++;
     }
-    return x;
+    for (i = 0; i < 10; ++i) {
+        x = (x + 1) * i;
+        if (x > 10) {
+            return x;
+        }
+    }
+    return 0;
 }

@@ -157,11 +157,12 @@ class NameScope(object):
         ifStm.ifBlock = ifBlock
         return ifStm
 
-    def processReturnStatement(self):
+    def processReturnStatement(self, insertBreak = False):
         """
         Generate an If block after the return statement
         """
-        from .typedefs import ReturnStatement, Assignment, IntConstant
+        from .typedefs import (ReturnStatement, Assignment, IntConstant,
+                               BreakStatement)
         # find the first statement that contains return.
         found = False
         for i in range(len(self.statements)):
@@ -177,13 +178,15 @@ class NameScope(object):
             ifStatement = self._ifNotReturn(afterReturnBlock)
             self.addStatement(ifStatement)
             if ifStatement.containsReturn():
-                ifStatement.processReturnStatement()
+                ifStatement.processReturnStatement(insertBreak)
         if isinstance(self.statements[i], ReturnStatement):
             variable = self.findVariable("__must_return__")
             assignment = Assignment(variable, IntConstant(1))
             self.statements.insert(i+1, assignment)
+            if (insertBreak):
+                self.statements.insert(i+2, BreakStatement())
         else:
-            self.statements[i].processReturnStatement()
+            self.statements[i].processReturnStatement(insertBreak)
 
 
     def _printVarList(self, prefix):

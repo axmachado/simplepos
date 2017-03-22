@@ -89,7 +89,7 @@ class Function(CallableBlock):
         # module unless the function is actually called.
         self.calledFunctions.add(name)
 
-    def processReturnStatement(self):
+    def processReturnStatement(self, insertBreak = False):
         """
         Finds out if is there any return statement inside the function body,
         and if it is not the last statement, generates an If block to
@@ -108,8 +108,7 @@ class Function(CallableBlock):
             self.addVariable("__must_return__", INT)
             self.statements.insert (0, Assignment(
                 self.findVariable("__must_return__"), IntConstant(0)))
-
-        super(Function,self).processReturnStatement()
+            super(Function,self).processReturnStatement(False)
 
 
 class BuiltinFunction(Function):
