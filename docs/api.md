@@ -1,5 +1,7 @@
 # API SimplePOS - POSXML
 
+  See also the [Internal Functions API](internal.md).
+
   The API can be divided into the folowing sections:
 
   * [Card reading functions](#card_reading_functions)
