@@ -108,6 +108,8 @@ class Constant(Value):
     @value.setter
     def value(self, value):
         if self.type_ == INT:
+            if value is None:
+                value = 0
             self._value = str(int(value))
         else:
             self._value = str(value)

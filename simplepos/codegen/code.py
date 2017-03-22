@@ -108,10 +108,16 @@ class POSXMLCode(object):
 
     def functionCall(self, callInstance, returnVariableName):
         " generate code for a function call "
+        from ..objfile.typedefs import STRING, INT
         logger.debug ("      generating code for %s", callInstance)
         argValues = [self.procValue(i) for i in callInstance.arguments]
-        stmgen = FunctionCall(callInstance,
-                              self.findLinkedFunction(callInstance.name),
+        theFunction = self.findLinkedFunction(callInstance.name)
+        if returnVariableName is None:
+            if theFunction.returnType == STRING:
+                returnVariableName = self.currentScope().autoString()
+            elif theFunction.returnType == INT:
+                returnVariableName = self.currentScope().autoInt()
+        stmgen = FunctionCall(callInstance,theFunction,
                               returnVariableName, *argValues)
         self.addStatements(*stmgen.beforeFunctionCall())
         self.addStatements(stmgen)

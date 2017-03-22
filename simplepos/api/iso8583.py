@@ -60,7 +60,7 @@ def initApiFunctions():
 
     fcn = ApiFunction(INT, "iso8583_end_message",
                       ("variablesize", INT, True),
-                      tagname="iso8583.endmessage",
+                      tagName="iso8583.endmessage",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 

@@ -106,7 +106,7 @@ def initApiFunctions():
                       returnAttribute="variablereturn")
     functions.append(fcn)
 
-    fcn = ApiFunction(STRING, "strcat", ("firsvalue", STRING, False),
+    fcn = ApiFunction(STRING, "strcat", ("firstvalue", STRING, False),
                       ("secondvalue", STRING, False),
                       tagName="joinstring",
                       returnAttribute="variabledestination")
