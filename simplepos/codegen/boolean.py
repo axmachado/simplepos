@@ -316,7 +316,7 @@ class ConditionalFactory(object):
                 value = False
             return ConstantConditional(value)
         elif isinstance(condition, typedefs.VarValue):
-            return SingleVariableCondition('$(%s)' % condition.value.name)
+            return SingleVariableCondition('$(%s)' % condition.variable.name)
         elif isinstance(condition, typedefs.NegatedValue):
             cond = self.getConditional(condition.value)
             cond.negate()

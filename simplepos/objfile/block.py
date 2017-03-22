@@ -139,6 +139,53 @@ class NameScope(object):
         """
         return self.statements.pop()
 
+    def containsReturn(self):
+        for stm in self.statements:
+            if stm.containsReturn():
+                return True
+        return False
+
+    def _ifNotReturn(self, stmBlock):
+        from .typedefs.values import NegatedValue, VarValue
+        from .typedefs.statements import IfThenElse
+        variable = self.findVariable("__must_return__")
+        condition = NegatedValue(VarValue(variable))
+        ifStm = IfThenElse()
+        ifStm.condition = condition
+        ifBlock = BlockStatement(self)
+        ifBlock.statements = stmBlock
+        ifStm.ifBlock = ifBlock
+        return ifStm
+
+    def processReturnStatement(self):
+        """
+        Generate an If block after the return statement
+        """
+        from .typedefs import ReturnStatement, Assignment, IntConstant
+        # find the first statement that contains return.
+        found = False
+        for i in range(len(self.statements)):
+            if self.statements[i].containsReturn():
+                found = True
+                break
+        if not found:
+            return
+        if i < (len(self.statements)-1):
+            # Found it before the last statement
+            afterReturnBlock = self.statements[i+1:]
+            self.statements = self.statements[:i+1]
+            ifStatement = self._ifNotReturn(afterReturnBlock)
+            self.addStatement(ifStatement)
+            if ifStatement.containsReturn():
+                ifStatement.processReturnStatement()
+        if isinstance(self.statements[i], ReturnStatement):
+            variable = self.findVariable("__must_return__")
+            assignment = Assignment(variable, IntConstant(1))
+            self.statements.insert(i+1, assignment)
+        else:
+            self.statements[i].processReturnStatement()
+
+
     def _printVarList(self, prefix):
         """
         Print the list of variables for debugging and
@@ -262,3 +309,6 @@ class BlockStatement(NameScope, Statement):
     """
     def __init__(self, parentScope):
         super(BlockStatement, self).__init__(parentScope)
+
+    def containsReturn(self):
+        return NameScope.containsReturn(self)

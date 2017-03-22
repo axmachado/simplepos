@@ -28,7 +28,7 @@
 
 """
 from .block import CallableBlock
-from .typedefs import (VOID, UNDEF)
+from .typedefs import (VOID, UNDEF, INT)
 
 class InvalidCallException(Exception):
     """
@@ -88,6 +88,29 @@ class Function(CallableBlock):
         # the calls must not be propagated to the
         # module unless the function is actually called.
         self.calledFunctions.add(name)
+
+    def processReturnStatement(self):
+        """
+        Finds out if is there any return statement inside the function body,
+        and if it is not the last statement, generates an If block to
+        jump to the end after the return value is setted.
+        """
+        # first, we will try to find a return statement before the last
+        # statement
+        from .typedefs import Assignment, IntConstant
+        hasReturn = False
+        for i in range(len(self.statements)-1):
+            if self.statements[i].containsReturn():
+                hasReturn = True
+                break
+        if hasReturn:
+            # sets the __must_return__ variable to false
+            self.addVariable("__must_return__", INT)
+            self.statements.insert (0, Assignment(
+                self.findVariable("__must_return__"), IntConstant(0)))
+
+        super(Function,self).processReturnStatement()
+
 
 class BuiltinFunction(Function):
     " Function build into the compiler "

@@ -140,6 +140,7 @@ class CompilerListener(SimplePOSListener):
     # Exit a parse tree produced by SimplePOSParser#functiondef.
     def exitFunctiondef(self, ctx: SimplePOSParser.FunctiondefContext):
         theFunction = self.scope
+        theFunction.processReturnStatement()
         self._exitScope()
         self.module.addFunction(theFunction)
 

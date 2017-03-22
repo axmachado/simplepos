@@ -52,15 +52,50 @@ class Statement(object):
         return self.name
 
     def replaceVariableReferences(self, varName, variable):
-        # placeholder to be overwritten in statements that use variables
+        """
+        Replace all references of varName with variable.
+        Used during the link phase to unify references to variables
+        defined in other modules.
+
+        :param varName: variable name
+        :param variable: variable to be used.
+        """
         pass
 
     def resolveExternalConstant(self, constantName, constantValue):
+        """
+        Resolve references to externally defined constants, replacing them
+        with the value defined in the other module.
+
+        Used in link phase.
+
+        :param constantName: The name of the constant
+        :param constantValue:  The value to be replaced
+        """
         pass
 
     def replaceLinkedFunction(self, function):
-        # placeholder to be overwritten
+        """
+        Replace all references to function name with the linked function.
+
+        Used in link time to resolve functions defined in other modules or
+        after the call in this module.
+
+        :param function: linked function
+        """
         pass
+
+    def containsReturn(self):
+        """
+        Check if the statement contains a "return" instruction and shoud
+        end the current function;
+
+        It makes sense only in block statements, but is defined here to
+        provide an uniform interface to all statements.
+
+        :return:
+        """
+        return False
 
 class BreakStatement(Statement):
     "break statement"
@@ -70,12 +105,16 @@ class BreakStatement(Statement):
 
 
 class IncDecStatement(Statement):
-    "Increment (ID++) or Decrement (ID--)"
-
-    _variable = None
-    _operator = None
+    """
+    Increment (ID++) or Decrement (ID--)
+    """
 
     def __init__(self, variable, operator='++'):
+        """
+        Initializes the statement
+        :param variable:  The variable to be incremented/decremented
+        :param operator: the operator
+        """
         super(IncDecStatement, self).__init__()
         self.variable = variable
         self.operator = operator
@@ -142,6 +181,9 @@ class ReturnStatement(Statement):
 
     def replaceLinkedFunction(self, function):
         self.value.replaceLinkedFunction(function)
+
+    def containsReturn(self):
+        return True # the return statement contains itself
 
 class Assignment(Statement):
     """
@@ -280,11 +322,6 @@ class IfThenElse(Statement):
 
     conditional block of statements
     """
-
-    _condition = None
-    _ifBlock = None
-    _elseBlock = None
-
     def __init__(self):
         super(IfThenElse, self).__init__()
         self.condition = IntConstant(1)
@@ -377,6 +414,21 @@ class IfThenElse(Statement):
         if self.elseBlock:
             self.elseBlock.replaceLinkedFunction(function)
 
+    def containsReturn(self):
+        if (self.ifBlock):
+            if self.ifBlock.containsReturn():
+                return True
+        if (self.elseBlock):
+            if self.elseBlock.containsReturn():
+                return True
+        return False
+
+    def processReturnStatement(self):
+        if self.ifBlock:
+            self.ifBlock.processReturnStatement()
+        if self.elseBlock:
+            self.elseBlock.processReturnStatement()
+
     def __str__(self):
         return self.prefixedPrint("")
 
@@ -430,6 +482,13 @@ class WhileStatement(Statement):
     def replaceLinkedFunction(self, function):
         self.condition.replaceLinkedFunction(function)
         self.block.replaceLinkedFunction(function)
+
+    def containsReturn(self):
+        return self.block.containsReturn()
+
+    def processReturnStatement(self):
+        if self.block:
+            self.block.processReturnStatement()
 
 class ForStatement(WhileStatement):
     """

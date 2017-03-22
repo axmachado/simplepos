@@ -165,10 +165,12 @@ class FunctionDefinition(POSXMLStatement):
         self.function = function
         self.name = function.name
         self.functionCode = POSXMLCode(mainModule, self.name)
+        self.functionCode.functionDefinition = self
         for variable in function.variables.values():
-            initVal = "0" if variable.type_ is INT else ""
+            initVal = "0" if variable.type_ == INT else ""
             self.functionCode.addStatements(Assignment(variable.type_,
                                                        variable.name, initVal))
+
         for stm in self.function.statements:
             self.functionCode.statement(stm)
 

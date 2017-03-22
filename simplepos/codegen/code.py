@@ -42,6 +42,7 @@ class POSXMLCode(object):
     def __init__(self, parentCodeBlock=None, name='main', linkedFunctions=None):
         self.scopes = []
         self.name = name
+        self.functionDefinition = None
         self.linkedFunctions = linkedFunctions
         self.parentCodeBlock = parentCodeBlock
         if parentCodeBlock:
@@ -170,7 +171,10 @@ class POSXMLCode(object):
     def returnStatement(self, stm):
         v = stm.value
         self.enterScope()
-        returnVarName = '%s_return' % self.name
+        functionBlock = self
+        while not functionBlock.functionDefinition:
+            functionBlock = functionBlock.parentCodeBlock
+        returnVarName = '%s_return' % functionBlock.name
         stmgen = Assignment(v.type_, returnVarName, self.procValue(v))
         logger.debug ("      assignment: %s %s = '%s'",
                       v.type_, returnVarName, stmgen.value)
