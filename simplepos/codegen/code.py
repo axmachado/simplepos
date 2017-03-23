@@ -25,8 +25,6 @@
 
 import logging
 
-from django.contrib.gis.geos.prototypes.errcheck import last_arg_byref
-
 from ..objfile import typedefs
 from .variables import (Assignment, IncrementDecrement)
 from .functions import (FunctionCall, MathematicalOperation,
