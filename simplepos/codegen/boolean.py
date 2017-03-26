@@ -438,7 +438,7 @@ class LogicalExpr(Conditional):
             self.andCode(codeBlock, cond1, cond2)
 
     def emit(self):
-        operator = "notequals" if not self.isNegated else "equals"
+        operator = "notequalto" if not self.isNegated else "equalto"
         return 'variable="$(%s)" operator="%s" value="%s"' % \
                (self.resultVar, operator, "0")
 

@@ -100,8 +100,8 @@ def initApiFunctions():
                       returnAttribute="destination")
     functions.append(fcn)
 
-    fcn = ApiFunction(STRING, "substr", ("length", INT, False),
-                      ("start", INT, False), ("string", STRING, False),
+    fcn = ApiFunction(STRING, "substr", ("start", INT, False),
+                      ("length", INT, False), ("string", STRING, False),
                       tagName="string.substring",
                       returnAttribute="variablereturn")
     functions.append(fcn)

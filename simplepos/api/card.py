@@ -47,13 +47,14 @@ def initApiFunctions():
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "input_transaction",
-                      ("inputtype", STRING, False),
-                      ("keyboard", STRING, False),
+                      ("inputtype", INT, False),
+                      ("keyboard", INT, False),
                       ("cardvariable", STRING, True),
                       ("timeout", INT, False),
-                      ("keyvariable", STRING, True),
+                      ("keyvariable", INT, True),
                       tagName="system.inputtransaction",
                       returnAttribute="variablereturn"
                       )
+    functions.append(fcn)
 
     return functions

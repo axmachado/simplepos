@@ -234,9 +234,9 @@ class BinaryExpressionValue(Value):
     """
     def __init__(self):
         super(BinaryExpressionValue, self).__init__(INT)
-        self.left = None
-        self.operator = None
-        self.right = None
+        self._left = None
+        self._operator = None
+        self._right = None
 
     @property
     def left(self):
@@ -254,15 +254,19 @@ class BinaryExpressionValue(Value):
         return self._operator
 
     @left.setter
-    @valueSetter
     def left(self, value):
         "left side"
+        if self.right is not None:
+            if value.type_ != self.right.type_:
+                raise TypeError("Expected a value of type %s" % self.right.type_)
         self._left = value
 
     @right.setter
-    @valueSetter
     def right(self, value):
         "right side"
+        if self.left is not None:
+            if value.type_ != self.left.type_:
+                raise TypeError("Expected a value of type %s" % self.left.type_)
         self._right = value
 
     @operator.setter

@@ -104,22 +104,40 @@ class POSXMLCode(object):
                 return self.parentCodeBlock.findLinkedFunction(name)
         return result
 
+    def specialCasesFunctionCall(self, theFunction, callInstance,
+                                 returnVariableName):
+        if theFunction.name == 'inttostring':
+            if isinstance(callInstance.arguments[0], typedefs.IntConstant):
+                stmgen = Assignment(typedefs.STRING, returnVariableName,
+                                    callInstance.arguments[0].value)
+                self.addStatements(stmgen)
+                return True
+        if theFunction.name == 'stringtoint':
+            if isinstance(callInstance.arguments[0], typedefs.StringConstant):
+                stmgen = Assignment(typedefs.INT, returnVariableName,
+                                    callInstance.arguments[0].value)
+                self.addStatements(stmgen)
+                return True
+        return False
+
     def functionCall(self, callInstance, returnVariableName):
         " generate code for a function call "
         from ..objfile.typedefs import STRING, INT
         logger.debug ("      generating code for %s", callInstance)
-        argValues = [self.procValue(i) for i in callInstance.arguments]
         theFunction = self.findLinkedFunction(callInstance.name)
-        if returnVariableName is None:
-            if theFunction.returnType == STRING:
-                returnVariableName = self.currentScope().autoString()
-            elif theFunction.returnType == INT:
-                returnVariableName = self.currentScope().autoInt()
-        stmgen = FunctionCall(callInstance,theFunction,
-                              returnVariableName, *argValues)
-        self.addStatements(*stmgen.beforeFunctionCall())
-        self.addStatements(stmgen)
-        self.addStatements(*stmgen.afterFunctionCall())
+        if not self.specialCasesFunctionCall(theFunction, callInstance,
+                                             returnVariableName):
+            argValues = [self.procValue(i) for i in callInstance.arguments]
+            if returnVariableName is None:
+                if theFunction.returnType == STRING:
+                    returnVariableName = self.currentScope().autoString()
+                elif theFunction.returnType == INT:
+                    returnVariableName = self.currentScope().autoInt()
+            stmgen = FunctionCall(callInstance,theFunction,
+                                  returnVariableName, *argValues)
+            self.addStatements(*stmgen.beforeFunctionCall())
+            self.addStatements(stmgen)
+            self.addStatements(*stmgen.afterFunctionCall())
 
     def functionReturnVariable(self, value):
         " generate a return variable to a function call "
