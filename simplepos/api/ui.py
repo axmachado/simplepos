@@ -32,7 +32,7 @@ def initApiFunctions():
                       returnAttribute="variable")
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "menuwithheader",
+    fcn = ApiFunction(STRING, "menuwithheader",
                       ("header", STRING, False),
                       ("timeoutheader", INT, False),
                       ("options", STRING, False),

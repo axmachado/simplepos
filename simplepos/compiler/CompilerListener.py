@@ -115,7 +115,7 @@ class CompilerListener(SimplePOSListener):
             self.scope = self.scopeStack.pop()
 
     def _printError(self, line, column, message):
-        print("%s (%d,%d) ERROR: %s" % (self.module.sourceFile, line,
+        print("%s:%d:%d: ERROR: %s" % (self.module.sourceFile, line,
                                         column + 1, message))
 
     # Enter a parse tree produced by SimplePOSParser#moduledef.
@@ -233,10 +233,15 @@ class CompilerListener(SimplePOSListener):
         rvalue = self.valueStack.pop()
         lvalue = self.valueStack.pop()
         value = expConstructor()
-        value.left = lvalue
-        value.right = rvalue
-        value.operator = ctx.getText()
-        self.valueStack.append(value)
+        try:
+            value.left = lvalue
+            value.right = rvalue
+            value.operator = ctx.getText()
+            self.valueStack.append(value)
+        except TypeError as err:
+            self._printError(ctx.symbol.line,
+                             ctx.symbol.column, str(err))
+            sys.exit(3)
 
     # Exit a parse tree produced by SimplePOSParser#rexp.
     def exitRexp(self, ctx: SimplePOSParser.RexpContext):

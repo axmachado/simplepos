@@ -241,7 +241,7 @@
   POSXML **crypto.crc** call, with **type** parameter set to **"CRC-CCITT"**.
   [https://docs.cloudwalk.io/en/posxml/commands/crypto.crc]
     
-### cypher_block
+### cyiher_block
   Ciphers a block of 8 bytes using the requested algorithm. 
   The allowed algorithms (parameter _cryptotype_) are:
 
@@ -251,12 +251,12 @@
   * NEWDES
 
 
-     string cypher_block(string cryptotype, string key, string message)
+     string cipher_block(string cryptotype, string key, string message)
 
-  POSXML **crypto.encryptdecrypt** call with **type** parameter set to **"0"** (cypher).
+  POSXML **crypto.encryptdecrypt** call with **type** parameter set to **"0"** (cipher).
   [https://docs.cloudwalk.io/en/posxml/commands/crypto.encryptdecrypt]
       
-### decypher_block
+### decipher_block
   Deciphers a block of 8 bytes using the requested algorithm. 
   The allowed algorithms (parameter _cryptotype_) are:
 
@@ -266,9 +266,9 @@
   * NEWDES
 
 
-     string decypher_block(string cryptotype, string key, string message)
+     string decipher_block(string cryptotype, string key, string message)
 
-  POSXML **crypto.encryptdecrypt** call with **type** parameter set to **"1"** (decypher).
+  POSXML **crypto.encryptdecrypt** call with **type** parameter set to **"1"** (decipher).
   [https://docs.cloudwalk.io/en/posxml/commands/crypto.encryptdecrypt]
       
 ### lrc
