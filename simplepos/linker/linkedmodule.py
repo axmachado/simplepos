@@ -209,21 +209,24 @@ class LinkedModule(object):
     def resolveNameConflictsForFunction(function, existingList,
                                         suffix=""):
         genCount = 0
-        for argument in function.arguments.values():
-            if argument.name in existingList:
-                newName = function.name + '_' + str(genCount) + '_' + suffix
-                genCount += 1
-                oldName = argument.name
-                var = argument.variable
-                var.name = newName
-                function.replaceVariableReferences(oldName,
-                                                   argument.variable)
+        if not isinstance(function, BuiltinFunction):
+            for argument in function.arguments.values():
+                if argument.name in existingList:
+                    newName = function.name + '_' + str(genCount) + '_' + suffix
+                    genCount += 1
+                    oldName = argument.name
+                    var = argument.variable
+                    var.name = newName
+                    logger.debug ("     Renaming %s to %s", oldName, newName)
+                    function.replaceVariableReferences(oldName,
+                                                       argument.variable)
         for variable in function.variables.values():
             if variable.name in existingList:
                 newName = function.name + '_' + str(genCount) + '_' + suffix
                 genCount += 1
                 oldName = variable.name
                 variable.name = newName
+                logger.debug ("     Renaming %s to %s", oldName, newName)
                 function.replaceVariableReferences(oldName, variable)
 
     def resolveLocalGlobalOveralp(self):

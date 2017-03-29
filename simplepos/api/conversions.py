@@ -43,7 +43,7 @@ def initApiFunctions():
     functions.append(fcn)
 
     fcn = ApiFunction(INT, "basetoint", ("base", INT, False),
-                      ("number", STRING, False), tagName="converto.toint",
+                      ("number", STRING, False), tagName="convert.toint",
                       returnAttribute="variablereturn")
     functions.append(fcn)
 

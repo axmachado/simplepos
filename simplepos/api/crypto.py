@@ -45,7 +45,7 @@ def initApiFunctions():
                       ("key", STRING, False),
                       ("message", STRING, False),
                       returnAttribute="variablereturn",
-                      tagname="crypto.encryptdecrypt")
+                      tagName="crypto.encryptdecrypt")
     fcn.addFixedAttribute("type", "0")
     functions.append(fcn)
 
@@ -54,7 +54,7 @@ def initApiFunctions():
                       ("key", STRING, False),
                       ("message", STRING, False),
                       returnAttribute="variablereturn",
-                      tagname="crypto.encryptdecrypt")
+                      tagName="crypto.encryptdecrypt")
     fcn.addFixedAttribute("type", "1")
     functions.append(fcn)
 
