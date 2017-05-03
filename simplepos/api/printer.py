@@ -43,7 +43,7 @@ def initApiFunctions():
                           ("number", STRING, False))
     functions.append(fcn)
 
-    fcn = ApiFunction(INT, "checkpaper", returnAttribute="variableReturn",
+    fcn = ApiFunction(INT, "checkpaper", returnAttribute="variablereturn",
                       tagName="checkpaperout")
     functions.append(fcn)
 
