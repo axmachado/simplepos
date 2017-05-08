@@ -23,7 +23,7 @@
 """
 import logging
 
-from .base import CodeGenerationError
+from .base import CodeGenerationError, quotedValue
 from .variables import Assignment
 from ..objfile import typedefs
 
@@ -173,8 +173,8 @@ class SimpleComparison(Conditional):
 
     def emit(self):
         "emits the attributes for the POSXML tag"
-        return 'variable="%s" operator="%s" value="%s"' % \
-               (self.variable, self.operator, self.value)
+        return 'variable="%s" operator="%s" value=%s' % \
+               (self.variable, self.operator, quotedValue(self.value))
 
 
 class LogicalValueContext(object):

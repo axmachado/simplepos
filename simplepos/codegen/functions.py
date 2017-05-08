@@ -23,7 +23,7 @@
 """
 import logging
 from ..api import findApiFunction
-from .base import POSXMLStatement, emitTag
+from .base import POSXMLStatement, emitTag, quotedValue
 from ..objfile.typedefs import INT, STRING
 
 logger = logging.getLogger("linker")
@@ -75,7 +75,7 @@ class FunctionCall(POSXMLStatement):
 
         attributesPart = []
         for attr in attributes:
-            attributesPart.append('%s="%s"' % (attr, attributes[attr]))
+            attributesPart.append('%s=%s' % (attr, quotedValue(attributes[attr])))
 
         return ('<%s %s />' % (apiFcn.tagName, " ".join(attributesPart)),)
 

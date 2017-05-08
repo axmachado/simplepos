@@ -28,9 +28,16 @@ import logging
 logger = logging.getLogger("linker")
 
 
+def quotedValue(value):
+    if '"' in str(value):
+        return "'%s'" % str(value)
+    else:
+        return '"%s"' % str(value)
+
 def emitTag(tagName, attributes, values):
     " Utilitty: Emit a single tag with attributes "
-    attrVal = ['%s="%s"' % val for val in zip(attributes, values)]
+    attrVal = ['%s=%s' % val for val in zip(attributes,
+                                            [quotedValue(v) for v in values])]
     return ('<%s %s />' % (tagName, ' '.join(attrVal)), )
 
 

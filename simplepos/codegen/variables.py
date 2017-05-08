@@ -24,7 +24,7 @@
 """
 
 from ..objfile.typedefs import INT
-from .base import POSXMLStatement
+from .base import POSXMLStatement, quotedValue
 
 
 class Assignment(POSXMLStatement):
@@ -44,7 +44,7 @@ class Assignment(POSXMLStatement):
 
     def emitStatement(self):
         tag = "integervariable" if self.type_ == INT else "stringvariable"
-        return ('<%s value="%s" variable="%s" />' % (tag, self.value, self.variable), )
+        return ('<%s value=%s variable="%s" />' % (tag, quotedValue(self.value), self.variable), )
 
 
 class IncrementDecrement(POSXMLStatement):
